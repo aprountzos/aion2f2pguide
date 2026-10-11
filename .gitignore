@@ -1,0 +1,12 @@
+node_modules/
+build/
+.docusaurus/
+.cache-loader/
+.DS_Store
+
+# Generated when you run `npm start` or `npm run build` (never edit or commit these)
+docs/changelog.md
+src/generated/
+
+# Editor workspace state
+.vscode/
