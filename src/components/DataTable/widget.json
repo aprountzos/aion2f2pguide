@@ -1,0 +1,10 @@
+{
+  "description": "Sortable, filterable table built from the files in data/ (zones, gathering nodes, Raw Leather mobs, milestones).",
+  "props": {
+    "id": {
+      "type": "string",
+      "required": true,
+      "values": ["zones-asmodian", "zones-elyos", "gathering-asmodian", "gathering-elyos", "leather-asmodian", "leather-elyos", "milestones"]
+    }
+  }
+}

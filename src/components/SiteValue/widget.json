@@ -1,0 +1,6 @@
+{
+  "description": "Prints a value from site.config.json inside a sentence, for example the date the data was last checked.",
+  "props": {
+    "name": {"type": "string", "required": true, "values": ["dataChecked", "version", "siteTitle"]}
+  }
+}

@@ -1,0 +1,25 @@
+.comments {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--ifm-toc-border-color);
+}
+
+.title {
+  font-size: 1.35rem;
+  margin-bottom: 0.5rem;
+}
+
+.note {
+  font-size: 0.875rem;
+  color: var(--ifm-color-emphasis-700);
+  margin-bottom: 1rem;
+}
+
+.placeholder {
+  margin-top: 2rem;
+  padding: 0.75rem 1rem;
+  border: 1px dashed var(--ifm-color-emphasis-400);
+  border-radius: 6px;
+  font-size: 0.85rem;
+  color: var(--ifm-color-emphasis-700);
+}

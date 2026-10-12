@@ -1,0 +1,17 @@
+{
+  "owner": "aprountzos",
+  "repo": "aion2f2pguide",
+  "branch": "main",
+  "author": "Athanasios Prountzos",
+  "siteTitle": "Aion 2 F2P Guide",
+  "tagline": "Gathering, leather and leveling, organized by level",
+  "dataChecked": "2026-10-10",
+  "editBranch": "dev",
+  "giscus": {
+    "enabled": false,
+    "category": "Comments",
+    "repoId": "",
+    "categoryId": ""
+  },
+  "staleDays": 30
+}

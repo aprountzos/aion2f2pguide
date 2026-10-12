@@ -1,0 +1,48 @@
+/* Aion 2 F2P Guide: deep-sky palette */
+:root {
+  --ifm-color-primary: #2f6fb0;
+  --ifm-color-primary-dark: #2a639e;
+  --ifm-color-primary-darker: #285d95;
+  --ifm-color-primary-darkest: #204c7b;
+  --ifm-color-primary-light: #3a7bc1;
+  --ifm-color-primary-lighter: #4284c8;
+  --ifm-color-primary-lightest: #63a0dc;
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme='dark'] {
+  --ifm-color-primary: #6fb3ef;
+  --ifm-color-primary-dark: #4fa1ea;
+  --ifm-color-primary-darker: #3f98e8;
+  --ifm-color-primary-darkest: #1c7fd6;
+  --ifm-color-primary-light: #8fc5f3;
+  --ifm-color-primary-lighter: #9fcdf5;
+  --ifm-color-primary-lightest: #cae3f9;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+/* Wide tables (zone, node and drop tables) scroll instead of breaking the layout */
+.markdown table {
+  display: block;
+  overflow-x: auto;
+  width: max-content;
+  max-width: 100%;
+}
+
+.markdown table th,
+.markdown table td {
+  white-space: normal;
+  min-width: 5.5rem;
+  vertical-align: top;
+}
+
+/* Keep long reference tables readable */
+.markdown table tr:nth-child(even) {
+  background-color: var(--ifm-table-stripe-background);
+}
+
+/* Tighter admonitions */
+.theme-admonition {
+  margin-bottom: 1.25rem;
+}

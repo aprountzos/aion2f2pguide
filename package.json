@@ -1,0 +1,63 @@
+{
+  "name": "aion2-guide",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Community-maintained Aion 2 free-to-play guide (gathering, leather, leveling), organized by level. Published with Docusaurus.",
+  "license": "MIT",
+  "author": "Athanasios Prountzos",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aprountzos/aion2f2pguide.git"
+  },
+  "engines": {
+    "node": ">=20.0"
+  },
+  "scripts": {
+    "prepare-site": "node scripts/prepare-site.mjs",
+    "data": "node scripts/data.mjs",
+    "new-page": "node scripts/new-page.mjs",
+    "new-component": "node scripts/new-component.mjs",
+    "lint": "node scripts/lint-docs.mjs",
+    "check": "npm run lint && npm run build",
+    "init": "node scripts/init-project.mjs",
+    "release": "node scripts/release.mjs",
+    "check-release": "node scripts/check-release.mjs",
+    "docusaurus": "docusaurus",
+    "prestart": "npm run prepare-site && node scripts/fetch-contributors.mjs",
+    "start": "docusaurus start",
+    "prebuild": "npm run prepare-site && node scripts/fetch-contributors.mjs",
+    "build": "docusaurus build",
+    "clear": "docusaurus clear",
+    "serve": "docusaurus serve",
+    "write-heading-ids": "docusaurus write-heading-ids",
+    "stale": "node scripts/stale-pages.mjs"
+  },
+  "dependencies": {
+    "@docusaurus/core": "3.10.2",
+    "@docusaurus/faster": "3.10.2",
+    "@docusaurus/preset-classic": "3.10.2",
+    "@easyops-cn/docusaurus-search-local": "^0.55.3",
+    "@giscus/react": "3.1.0",
+    "@mdx-js/react": "^3.0.0",
+    "prism-react-renderer": "^2.3.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "yaml": "2.9.1"
+  },
+  "devDependencies": {
+    "@docusaurus/module-type-aliases": "3.10.2",
+    "@docusaurus/types": "3.10.2"
+  },
+  "browserslist": {
+    "production": [
+      ">0.5%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 3 chrome version",
+      "last 3 firefox version",
+      "last 5 safari version"
+    ]
+  }
+}
