@@ -8,10 +8,10 @@
   "dataChecked": "2026-10-10",
   "editBranch": "dev",
   "giscus": {
-    "enabled": false,
+    "enabled": true,
     "category": "Comments",
-    "repoId": "",
-    "categoryId": ""
+    "repoId": "R_kgDOVFOjhQ",
+    "categoryId": "DIC_kwDOVFOjhc4DH_iu"
   },
   "staleDays": 30
 }
