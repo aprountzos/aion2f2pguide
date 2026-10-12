@@ -1,0 +1,110 @@
+# Questions and answers. Shown as a blog-style list on the Questions page, newest first.
+# Visitors ask new questions in the discussion at the bottom of that page. When an answer there is
+# good and checked, copy it here (see "Answer a question" in the Contribute section).
+#
+# Required:
+#   id        unique, lowercase with hyphens. It becomes the link to the answer (/questions#my-id)
+#   date      the day the answer was written or last checked, in quotes: "2026-10-10"
+#   question  the question, ending with ?
+#   answer    the answer. Blank lines make paragraphs. **bold**, `code` and [text](https://link) work
+#   tags      one or more of: leveling, gathering, leather, crafting, gear, economy, general
+# Optional:
+#   pages     guide pages to link to, by file name ("Raw Leather" or "raw-leather")
+#   by        who answered (a name or @github-name)
+#
+# Keep it sorted: newest date first. After editing run `npm run check`.
+
+- id: how-current-is-the-data
+  date: "2026-10-10"
+  question: How current is the data in this guide?
+  tags: [general]
+  answer: |
+    Everything was last checked on **2026-10-10** (global version). Every page shows its own "last verified" date and a yellow notice when it has not been checked for a while.
+
+    The game changes every week, so numbers such as drop rates and node counts can be out of date. The Sources page lists every source and the places where sources disagree.
+  pages: [Sources, Patch History]
+
+- id: odyle-vs-odyle-energy
+  date: "2026-10-10"
+  question: What is the difference between Odyle and Odyle Energy?
+  tags: [gathering, crafting]
+  answer: |
+    **Odyle** is a crafting material. You gather it from floating nodes (you need Wings to reach them) and most crafting recipes use it.
+
+    **Odyle Energy** is a refilling resource that builds up from level 22. You spend it on reward cubes. Free players cap at 560, subscribers at 840.
+  pages: [Odyle, Glossary]
+
+- id: free-enhance-stones
+  date: "2026-10-10"
+  question: Where do I get Enhance Stones for free?
+  tags: [gear]
+  answer: |
+    Four ways, all free:
+
+    1. **Sealed dungeons**, one time: each home-faction clear for the level 22 and 32 Ascensions gives 1,250 Enhance Stones. Do your rival faction's sealed dungeons after your own.
+    2. **Daily Dungeon** (Unknown Fissure): unlocks at level 30, 14 attempts per week.
+    3. **Extracting spare gear.**
+    4. **Supply Request:** 5 Raw Leather give 380 Abyss Points and 100 Enhance Stones.
+  pages: [Enhancement and Upgrades, Milestones 1 45]
+
+- id: enhance-gear-while-leveling
+  date: "2026-10-10"
+  question: Should I enhance my gear while leveling?
+  tags: [gear, leveling]
+  answer: |
+    Not heavily. You replace gear constantly while leveling, so equip quest gear as you get it and save real investment for gear you plan to keep around the level 45 cap.
+
+    One cheap exception: enhancement levels 1 to 10 always succeed, and at +10 or below you can extract the stones back (not the Kina). Taking your main weapon or armor to +10 is a reversible choice.
+  pages: [Enhancement and Upgrades]
+
+- id: get-strong-leather
+  date: "2026-10-10"
+  question: How do I get Strong Leather?
+  tags: [leather, crafting]
+  answer: |
+    Craft it with **Armorsmithing** from Raw Leather: 2 Raw Leather make 1 Strong Leather (Armorsmithing level 1). At Armorsmithing level 25 there is a batch recipe, 20 Raw Leather make 10 Strong Leather, which replaces five runs of the first recipe.
+
+    Decide which armor you will craft before you spend your Raw Leather stock.
+  pages: [Strong Leather Crafting, Crafting Professions]
+
+- id: buy-raw-leather-on-the-market
+  date: "2026-10-10"
+  question: Can I just buy Raw Leather on the Market as a free player?
+  tags: [leather, economy]
+  answer: |
+    No. All sources agree that buying from the Market needs the subscription. Guides that say "buy Raw Leather" assume a subscriber, so plan to farm it.
+
+    Whether a free account can at least **list** items for sale is disputed. Test it in game before you plan around selling surplus.
+  pages: [Free to Play Notes, Raw Leather]
+
+- id: is-raw-leather-a-node
+  date: "2026-10-10"
+  question: Is Raw Leather a gathering node?
+  tags: [leather, gathering]
+  answer: |
+    No. Raw Leather **drops from monsters**: more than 140 monsters from level 10 to 53. You need level 15 to use it, and it stacks to 10,000.
+
+    Since the Oct 7 2026 update most common monsters give 5.8% per kill (about one in 17 kills). Named monsters give far more, up to 62.2%.
+  pages: [Raw Leather, Leather Farming by Level]
+
+- id: most-ruby-nodes
+  date: "2026-10-10"
+  question: Which zone has the most Ruby nodes?
+  tags: [gathering]
+  answer: |
+    **Basfelt Ruins** in Altgard (zone level 33 to 34) has the largest cluster in the guide's data: **120 Ruby nodes**. The nearest waypoint is Graverobber Campsite, about 130 m away.
+
+    For Elyos, Verteron Fortress Ruins (levels 19 to 21) has 70, Garden of the Illusion God (44 to 45) has 66 and Southern Altamia Highland (37 to 45) has 60.
+
+    For the Asmodian promotion quest the advice is Calderon Canyon, but sources conflict, see the Gems page.
+  pages: [Gems Ruby Sapphire Diamond, Gathering by Level]
+
+- id: where-farm-raw-leather-level-36
+  date: "2026-10-10"
+  question: Where should I farm Raw Leather at level 36?
+  tags: [leather, leveling]
+  answer: |
+    **Asmodian:** Giant Ore Insectoid Adult at Fafnite Deposit (level 36). It drops Raw Leather at **5.8%** per kill, but there are only 11 spawns. The level 35 Giant Ore Insectoid has 115 spawns at 2.9%, so you find them faster and get half the rate. Fafnite Deposit also has 180 Orichalcum nodes, so you can gather on the same loop.
+
+    **Elyos:** the data has no level 36 entry yet. The nearest are Ridge Ursus at level 22 and Confused Ursus at levels 44 to 45. If you know a good level 36 spot, see Help Wanted.
+  pages: [Leather Farming by Level, Help Wanted]

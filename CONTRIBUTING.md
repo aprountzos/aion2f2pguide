@@ -70,12 +70,14 @@ Edit these folders only:
 | Folder | What |
 | --- | --- |
 | `docs/` | The guide pages (Markdown). Each page has an **Edit this page** link on the site |
-| `data/` | The numbers behind the big tables. After editing, run `npm run data` if the Patch History changed |
+| `data/` | The numbers behind the tables, the item database (`items.yml`) and the answered questions (`questions.yml`). After editing, run `npm run data` if the Patch History changed |
 | `src/components/` | Interactive widgets (React). Create one with `npm run new-component -- Name` |
 
 `docs/changelog.md` and `src/generated/` are created on every start or build and never committed. Colors and global styling are in `src/css/custom.css`.
 
-To add a new page: `npm run new-page -- "03-gathering/nodes" "Diamond Nodes"`.
+To add a new page: `npm run new-page -- "03-gathering/nodes" "Diamond Nodes"`. To add an item or an answered question, copy an entry in `data/items.yml` or `data/questions.yml` (the on-site pages *Add an Item* and *Answer a Question* explain the fields).
+
+A bot comments on your pull request with a **content report**: what your change touches and any problem with its line number. See the same report before you push with `npm run pr-report -- --base upstream/dev`.
 
 If `dev` moved while your pull request was open:
 

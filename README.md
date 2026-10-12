@@ -22,7 +22,7 @@ You do not need to code. The fastest way to help:
 
 Other ways: [report a wrong number](https://github.com/aprountzos/aion2f2pguide/issues/new?template=data-correction.yml), [suggest a topic](https://github.com/aprountzos/aion2f2pguide/issues/new?template=new-content.yml), or pick something from the [Help Wanted](https://aprountzos.github.io/aion2f2pguide/contribute/help-wanted) list.
 
-Other ways to contribute: [build a widget](https://aprountzos.github.io/aion2f2pguide/contribute/add-a-react-component) for the site.
+Other ways to contribute: [add an item](https://aprountzos.github.io/aion2f2pguide/contribute/add-an-item), [answer a question](https://aprountzos.github.io/aion2f2pguide/contribute/answer-a-question), [build a widget](https://aprountzos.github.io/aion2f2pguide/contribute/add-a-react-component) for the site.
 
 ## Branches and versions
 
@@ -41,11 +41,11 @@ The guide is a folder of plain Markdown pages, published with **[Docusaurus](htt
 docs/               <- the guide: edit these pages (folders become the sidebar)
   index.mdx         <- front page
   01-basics/ ... 10-contribute/
-data/               <- numbers behind the big tables (YAML), used by the tables and the Level Finder
+data/               <- numbers behind the tables (YAML): zones, nodes, leather, milestones, patches, items, questions
 CHANGELOG.md        <- every released version, written by `npm run release`
 scripts/            <- lint, new-page, new-component, data, release and init scripts
 templates/          <- templates for new pages and components
-src/components/     <- React widgets (LevelFinder, DataTable ...), each with a widget.json
+src/components/     <- React widgets (LevelFinder, DataTable, ItemDatabase, Questions ...), each with a widget.json
 src/css/custom.css  <- the global stylesheet
 site.config.json    <- repo owner/name, author, "data checked" date
 .github/            <- CI/CD workflows, issue forms, PR template, Dependabot
@@ -74,6 +74,7 @@ npm start          # live preview at http://localhost:3000
 | `npm run data` | Regenerates the Patch History list from `data/patches.yml` (`lint` fails if it is out of date) |
 | `npm run new-component -- MyWidget` | Scaffolds a React widget (`src/components/MyWidget/`) |
 | `npm run stale` | Lists pages not verified for 30 days |
+| `npm run pr-report -- --base dev` | The report the bot posts on pull requests: changed pages and data rows, problems with file and line |
 | `npm run release -- patch\|minor\|major` | Maintainer: prepare a new version on `dev` (see [RELEASING.md](RELEASING.md)) |
 | `npm run init -- --user ... --repo ... --name "..."` | One-time setup for a new repository (see [MAINTAINING.md](MAINTAINING.md)) |
 

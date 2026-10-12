@@ -1,0 +1,341 @@
+# Item database: one entry per item. Shown by <ItemDatabase /> on the Item Database page (filters, sorting).
+# This is a curated starter set, not a full game database. Add what the guide needs and you can source.
+#
+# Required:
+#   id        unique, lowercase with hyphens ("raw-leather")
+#   name      the item name exactly as in game
+#   category  material | consumable | currency | equipment
+#   ref       https:// link to where you got the facts (a guide, wiki or screenshot host)
+#   checked   the day you checked it, in quotes: "2026-10-10"
+#   obtain and/or use   where it comes from / what it is for (short sentences, **bold** allowed)
+# Optional:
+#   type      free text: Ore, Log, Herb, Gloves, Guard ... (the Type filter lists what is used)
+#   grade     Common | Rare | Epic | Unique | Hero | Special (leave out when unknown)
+#   level     the level needed to use or gather it (whole number)
+#   itemLevel the item level (equipment)
+#   faction   both (default) | asmodian | elyos
+#   tradable  true | false
+#   note      one short extra line shown under the name
+#   pages     guide pages to link to, by file name ("Raw Leather" or "raw-leather")
+#
+# Unknown is fine: leave a field out instead of guessing. After editing run `npm run check`.
+
+- id: raw-leather
+  name: Raw Leather
+  category: material
+  type: Leather
+  grade: Common
+  level: 15
+  tradable: true
+  note: "Stacks to 10,000. Vendor price 9 Kina (a floor). Raw Leather (Bound) is a separate item that cannot be traded."
+  obtain: "Monster drop, not a node: 140+ monsters from level 10 to 53. Most common monsters give **5.8%** per kill since the Oct 7 2026 update, named monsters up to **62.2%**."
+  use: "Strong Leather, the base of armor recipes."
+  pages: [Raw Leather, Leather Farming by Level]
+  ref: https://allthings.how/aion-2-how-to-farm-raw-leather/
+  checked: "2026-10-10"
+
+- id: strong-leather
+  name: Strong Leather
+  category: material
+  type: Leather
+  obtain: "Armorsmithing: 2 Raw Leather make 1 Strong Leather (level 1), or 20 make 10 (level 25)."
+  use: "Base material for armor, including the Orichalcum set."
+  pages: [Strong Leather Crafting]
+  ref: https://wikily.gg/aion-2/crafting
+  checked: "2026-10-10"
+
+- id: orichalcum-ore
+  name: Orichalcum Ore
+  category: material
+  type: Ore
+  note: "Higher qualities: Fine, Pure and Radiant (Radiant is in demand)."
+  obtain: "Orichalcum nodes, from gathering proficiency 1. Verteron 546 nodes, Altgard 530, Eltnen 283, Morheim 273."
+  use: "Ingots and the Orichalcum armor and weapon line (Blacksmithing, Armorsmithing)."
+  pages: [Ore Orichalcum, Gathering by Level]
+  ref: https://wikily.gg/aion-2/gathering/ore
+  checked: "2026-10-10"
+
+- id: asvata-log
+  name: Asvata Log
+  category: material
+  type: Log
+  faction: asmodian
+  note: "Qualities: Standard, Fine, Pure, Radiant."
+  obtain: "Asvata nodes in Altgard (158 nodes), from gathering proficiency 1. Densest run: Nameless Cemetery."
+  use: "Wood crafts: bows, staves and jewelry (Handicrafting)."
+  pages: [Logs Asvata and Yggdrasil]
+  ref: https://wikily.gg/aion-2/gathering/logs
+  checked: "2026-10-10"
+
+- id: yggdrasil-log
+  name: Yggdrasil Log
+  category: material
+  type: Log
+  faction: elyos
+  note: "Qualities: Standard, Fine, Pure, Radiant."
+  obtain: "Yggdrasil nodes in Verteron (125 nodes), from gathering proficiency 1."
+  use: "Wood crafts: bows, staves and jewelry (Handicrafting)."
+  pages: [Logs Asvata and Yggdrasil]
+  ref: https://wikily.gg/aion-2/gathering/logs
+  checked: "2026-10-10"
+
+- id: ruby
+  name: Ruby
+  category: material
+  type: Gem
+  obtain: "Ruby nodes: 591 across Verteron, Altgard, Eltnen and Morheim. Biggest Asmodian cluster: Basfelt Ruins (120)."
+  use: "Handicrafting. Needed for the Asmodian promotion quest."
+  pages: [Gems Ruby Sapphire Diamond, Gathering Overview]
+  ref: https://wikily.gg/aion-2/gathering
+  checked: "2026-10-10"
+
+- id: sapphire
+  name: Sapphire
+  category: material
+  type: Gem
+  obtain: "Sapphire nodes: 579 across the four regions. Easiest run: Scarlet Forest (66 nodes, a waypoint ~10 m away)."
+  use: "Handicrafting."
+  pages: [Gems Ruby Sapphire Diamond]
+  ref: https://wikily.gg/aion-2/gathering
+  checked: "2026-10-10"
+
+- id: diamond
+  name: Diamond
+  category: material
+  type: Gem
+  obtain: "Diamond nodes: 579 across the four regions. Per-area counts are not known yet, use the map layer."
+  use: "Handicrafting."
+  pages: [Gems Ruby Sapphire Diamond]
+  ref: https://aion2maps.com/gathering/
+  checked: "2026-10-10"
+
+- id: odyle
+  name: Odyle
+  category: material
+  type: Crafting material
+  note: "Not the same as Odyle Energy. Qualities: Standard, Fine, Pure, Radiant."
+  obtain: "Floating gathering nodes near camps, towns and cities. You need Wings to reach them."
+  use: "Most crafting recipes, especially Weapon Forge, Armor Forge and Handicraft."
+  pages: [Odyle]
+  ref: https://www.playnews.gg/en/guides/aion-2-odyle-how-to-farm-this-resource-and-extract-it
+  checked: "2026-10-10"
+
+- id: aria
+  name: Aria
+  category: material
+  type: Herb
+  faction: elyos
+  note: "Has a regular and a Fresh grade."
+  obtain: "Aria nodes in Verteron and Eltnen (241 nodes)."
+  use: "Alchemy."
+  pages: [Herbs and Cooking Ingredients]
+  ref: https://aion2maps.com/gathering/
+  checked: "2026-10-10"
+
+- id: targena
+  name: Targena
+  category: material
+  type: Herb
+  faction: elyos
+  note: "Has a regular and a Fresh grade."
+  obtain: "Targena nodes in Verteron and Eltnen (184 nodes)."
+  use: "Alchemy."
+  pages: [Herbs and Cooking Ingredients]
+  ref: https://aion2maps.com/gathering/
+  checked: "2026-10-10"
+
+- id: azpha
+  name: Azpha
+  category: material
+  type: Herb
+  faction: asmodian
+  note: "Has a regular and a Fresh grade."
+  obtain: "Azpha nodes in Altgard and Morheim (222 nodes)."
+  use: "Alchemy."
+  pages: [Herbs and Cooking Ingredients]
+  ref: https://aion2maps.com/gathering/
+  checked: "2026-10-10"
+
+- id: calendula
+  name: Calendula
+  category: material
+  type: Herb
+  faction: asmodian
+  note: "Has a regular and a Fresh grade."
+  obtain: "Calendula nodes in Altgard and Morheim (169 nodes)."
+  use: "Alchemy."
+  pages: [Herbs and Cooking Ingredients]
+  ref: https://aion2maps.com/gathering/
+  checked: "2026-10-10"
+
+- id: mela
+  name: Mela
+  category: material
+  type: Fruit
+  faction: elyos
+  obtain: "Mela nodes in Verteron and Eltnen (150 nodes)."
+  use: "Cooking ingredient."
+  pages: [Herbs and Cooking Ingredients]
+  ref: https://aion2maps.com/gathering/
+  checked: "2026-10-10"
+
+- id: raydam
+  name: Raydam
+  category: material
+  type: Fruit
+  faction: asmodian
+  obtain: "Raydam nodes in Altgard and Morheim (144 nodes)."
+  use: "Cooking ingredient."
+  pages: [Herbs and Cooking Ingredients]
+  ref: https://aion2maps.com/gathering/
+  checked: "2026-10-10"
+
+- id: cypri
+  name: Cypri
+  category: material
+  type: Aquatic
+  faction: elyos
+  obtain: "Cypri nodes in Verteron and Eltnen (145 nodes)."
+  use: "Cooking ingredient."
+  pages: [Herbs and Cooking Ingredients]
+  ref: https://aion2maps.com/gathering/
+  checked: "2026-10-10"
+
+- id: inina
+  name: Inina
+  category: material
+  type: Aquatic
+  faction: elyos
+  obtain: "Inina nodes in Verteron and Eltnen (162 nodes)."
+  use: "Cooking ingredient."
+  pages: [Herbs and Cooking Ingredients]
+  ref: https://aion2maps.com/gathering/
+  checked: "2026-10-10"
+
+- id: conide
+  name: Conide
+  category: material
+  type: Aquatic
+  faction: asmodian
+  obtain: "Conide nodes in Altgard and Morheim (150 nodes)."
+  use: "Cooking ingredient."
+  pages: [Herbs and Cooking Ingredients]
+  ref: https://aion2maps.com/gathering/
+  checked: "2026-10-10"
+
+- id: pujery
+  name: Pujery
+  category: material
+  type: Aquatic
+  faction: asmodian
+  obtain: "Pujery nodes in Altgard and Morheim (141 nodes)."
+  use: "Cooking ingredient."
+  pages: [Herbs and Cooking Ingredients]
+  ref: https://aion2maps.com/gathering/
+  checked: "2026-10-10"
+
+- id: refining-stone
+  name: Refining Stone
+  category: material
+  type: Crafting material
+  obtain: "Monster drop, for example 0.65% from Giant Ore Insectoid Adult and Contaminated Swarm."
+  use: "Crafting. The first-sword route uses 5."
+  pages: [Crafting Professions]
+  ref: https://allthings.how/aion-2-how-to-farm-raw-leather/
+  checked: "2026-10-10"
+
+- id: expert-refining-stone
+  name: Expert's Refining Stone
+  category: material
+  type: Crafting material
+  obtain: "Monster drop, for example 0.16% from Giant Ore Insectoid Adult (Fafnite Deposit)."
+  pages: [Leather Farming by Level]
+  ref: https://allthings.how/aion-2-how-to-farm-raw-leather/
+  checked: "2026-10-10"
+
+- id: solvent
+  name: Solvent
+  category: material
+  type: Crafting material
+  obtain: "Bought from vendors."
+  use: "Turns Orichalcum Ore into Ingots. The first-sword route uses 3."
+  pages: [Crafting Professions]
+  ref: https://wikily.gg/aion-2/crafting
+  checked: "2026-10-10"
+
+- id: enhance-stone
+  name: Enhance Stone
+  category: material
+  type: Enhancement
+  obtain: "Sealed dungeons (1,250 for each home-faction clear for the 22 and 32 Ascensions, one time), the Daily Dungeon from level 30, extracting spare gear, and the Supply Request (5 Raw Leather give 100)."
+  use: "Gear enhancement. Levels 1 to 10 always succeed."
+  pages: [Enhancement and Upgrades]
+  ref: https://www.destructoid.com/how-to-get-and-use-enhance-stones-in-aion-2/
+  checked: "2026-10-10"
+
+- id: amplify-stone
+  name: Amplify Stone
+  category: material
+  type: Enhancement
+  use: "Enhancement from level 15 to 20, together with Kina."
+  pages: [Enhancement and Upgrades]
+  ref: https://www.destructoid.com/how-to-get-and-use-enhance-stones-in-aion-2/
+  checked: "2026-10-10"
+
+- id: shulak-loot-bundle-bound
+  name: Shulak Loot Bundle (Bound)
+  category: consumable
+  type: Bundle
+  tradable: false
+  use: "Opening one gives Raw Leather **14.8%** of the time."
+  pages: [Raw Leather]
+  ref: https://allthings.how/aion-2-how-to-farm-raw-leather/
+  checked: "2026-10-10"
+
+- id: kina
+  name: Kina
+  category: currency
+  note: "Most of a free player's Kina is bound (quests, Duty Missions, battle pass)."
+  obtain: "Quests, Duty Missions and the battle pass (bound). Unbound Kina mainly from Market and exchange sales."
+  use: "Main currency: enhancement, vendors, crafting catalysts."
+  pages: [Kina and Market]
+  ref: https://www.playnews.gg/en/guides/aion-2-how-the-economy-works-kina-quna-marketplace-and-15-subscription
+  checked: "2026-10-10"
+
+- id: abyss-points
+  name: Abyss Points
+  category: currency
+  obtain: "Supply Request: 5 Raw Leather give 380 Abyss Points (and 100 Enhance Stones)."
+  pages: [Raw Leather]
+  ref: https://allthings.how/aion-2-how-to-farm-raw-leather/
+  checked: "2026-10-10"
+
+- id: odyle-energy
+  name: Odyle Energy
+  category: currency
+  note: "Not the same as Odyle (the crafting material). Cap 560 for free players, 840 for subscribers."
+  obtain: "Builds up from level 22."
+  use: "Spent on reward cubes. Do not let it sit at the cap."
+  pages: [Free to Play Notes]
+  ref: https://gamesfuze.com/guides/aion-2-how-to-get-odyle-energy-and-where-to-spend-it/
+  checked: "2026-10-10"
+
+- id: tempest-gloves
+  name: Tempest Gloves
+  category: equipment
+  type: Gloves
+  obtain: "0.12% drop from Decomposed Lupyllini (levels 10 to 32)."
+  pages: [Leather Farming by Level]
+  ref: https://allthings.how/aion-2-how-to-farm-raw-leather/
+  checked: "2026-10-10"
+
+- id: vakron-guard
+  name: Vakron Guard
+  category: equipment
+  type: Guard (off-hand)
+  grade: Unique
+  itemLevel: 70
+  note: "Guards are off-hand items with no class restriction."
+  use: "Off-hand item with item level 70."
+  ref: https://games.gg/aion-2/guides/aion-2-item-level-guide/
+  checked: "2026-10-10"
