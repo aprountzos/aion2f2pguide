@@ -206,7 +206,7 @@ function Contents() {
                   {hidden > 0 && (
                     <li>
                       <Link to={s.url} className={styles.dim}>
-                        and {hidden} more
+                        and {hidden} more pages
                       </Link>
                     </li>
                   )}
