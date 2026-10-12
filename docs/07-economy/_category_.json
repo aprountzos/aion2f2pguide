@@ -1,10 +1,11 @@
 {
   "label": "Economy",
   "position": 7,
-  "collapsed": false,
+  "collapsed": true,
   "link": {
     "type": "generated-index",
     "title": "Economy",
-    "slug": "/category/economy"
+    "slug": "/category/economy",
+    "description": "How Kina and the Market work, and how to earn Kina at your level."
   }
 }

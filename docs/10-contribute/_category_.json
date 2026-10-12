@@ -1,10 +1,11 @@
 {
   "label": "Contribute",
   "position": 10,
-  "collapsed": false,
+  "collapsed": true,
   "link": {
     "type": "generated-index",
     "title": "Contribute",
-    "slug": "/category/contribute"
+    "slug": "/category/contribute",
+    "description": "Fix an error, add an item or answer a question. No coding needed."
   }
 }
