@@ -1,6 +1,6 @@
 # Changelog
 
-Every published version of the guide and the site. The format follows [Keep a Changelog](https://keepachangelog.com), and versions follow [Semantic Versioning](https://semver.org) as explained in [RELEASING.md](RELEASING.md).
+Every published version of the guide and the site. The format follows [Keep a Changelog](https://keepachangelog.com), and versions follow [Semantic Versioning](https://semver.org).
 
 ## [Unreleased]
 

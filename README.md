@@ -31,8 +31,6 @@ Other ways to contribute: [add an item](https://aprountzos.github.io/aion2f2pgui
 - Branch names: `data/...`, `add/...` (or `feature/...`), `fix/...`, `docs/...`, and `hotfix/...` for urgent fixes to the live site.
 - Versions are `MAJOR.MINOR.PATCH`, starting at **0.0.1**. Each release is tagged `vX.Y.Z`, has a GitHub Release and an entry in [CHANGELOG.md](CHANGELOG.md) (also shown as the Changelog page on the site).
 
-Maintainers: the full routine is in [RELEASING.md](RELEASING.md).
-
 ## How this repository works
 
 The guide is a folder of plain Markdown pages, published with **[Docusaurus](https://docusaurus.io)** to **GitHub Pages**.
@@ -75,28 +73,25 @@ npm start          # live preview at http://localhost:3000
 | `npm run new-component -- MyWidget` | Scaffolds a React widget (`src/components/MyWidget/`) |
 | `npm run stale` | Lists pages not verified for 30 days |
 | `npm run pr-report -- --base dev` | The report the bot posts on pull requests: changed pages and data rows, problems with file and line |
-| `npm run release -- patch\|minor\|major` | Maintainer: prepare a new version on `dev` (see [RELEASING.md](RELEASING.md)) |
-| `npm run init -- --user ... --repo ... --name "..."` | One-time setup for a new repository (see [MAINTAINING.md](MAINTAINING.md)) |
+| `npm run release -- patch\|minor\|major --push` | Maintainer: prepare a new version on `dev`, push it and open the release pull request |
+| `npm run init -- --user ... --repo ... --name "..."` | One-time setup after copying the project into a new repository |
 
 ## Deployment
 
-Pushing to `main` (a release) runs `.github/workflows/deploy.yml`, which lints, builds and publishes the site to GitHub Pages, and `.github/workflows/release.yml`, which tags the version and publishes the GitHub Release. Pull requests run `.github/workflows/ci.yml` (lint, build with a downloadable preview, branch rules). A weekly job checks all links. Details, including the one-time GitHub setup, are in [MAINTAINING.md](MAINTAINING.md).
+Pushing to `main` (a release) runs `.github/workflows/deploy.yml`, which lints, builds and publishes the site to GitHub Pages, and `.github/workflows/release.yml`, which tags the version and publishes the GitHub Release. Pull requests run `.github/workflows/ci.yml` (lint, build with a downloadable preview, branch rules). A weekly job checks all links.
 
 ## Documentation for this repo
 
 | File | For |
 | --- | --- |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | Anyone who wants to contribute |
-| [GITHUB-SETUP.md](GITHUB-SETUP.md) | The maintainer: first upload to GitHub, step by step |
-| [MAINTAINING.md](MAINTAINING.md) | The maintainer: setup, deploy, reviewing PRs, patch-day routine, troubleshooting |
-| [RELEASING.md](RELEASING.md) | The maintainer: branches, versions, publishing a release, hotfixes |
 | [CHANGELOG.md](CHANGELOG.md) | What changed in each version |
 | [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) | How we treat each other |
 | [SECURITY.md](SECURITY.md) | Reporting a problem privately |
 
 ## Comments
 
-Each guide page can show 👍 👎 reactions and comments through [giscus](https://giscus.app) (GitHub Discussions). It is off until a maintainer sets it up (MAINTAINING.md, 1.10). A comment is not a correction: use a [correction issue](https://github.com/aprountzos/aion2f2pguide/issues/new?template=data-correction.yml) or a pull request for data.
+Each guide page can show 👍 👎 reactions and comments through [giscus](https://giscus.app) (GitHub Discussions). It is off until a maintainer sets it up. A comment is not a correction: use a [correction issue](https://github.com/aprountzos/aion2f2pguide/issues/new?template=data-correction.yml) or a pull request for data.
 
 ## License
 
