@@ -8,7 +8,7 @@ import Comments from '@site/src/components/Comments';
 
 // Wraps the original doc footer (edit link, last updated) and adds
 //   - "Spotted a mistake?" with a link that opens a prefilled correction issue (`corrections: false` hides it)
-//   - the comment box (`comments: false` hides it)
+//   - the comment box (`comments: false` hides it; `qa: true` turns it into "Ask a question")
 export default function FooterWrapper(props) {
   const {frontMatter, metadata} = useDoc();
   const {siteConfig} = useDocusaurusContext();
@@ -28,7 +28,7 @@ export default function FooterWrapper(props) {
           </em>
         </p>
       )}
-      {frontMatter.comments !== false && <BrowserOnly>{() => <Comments />}</BrowserOnly>}
+      {frontMatter.comments !== false && <BrowserOnly>{() => <Comments qa={frontMatter.qa === true} />}</BrowserOnly>}
     </>
   );
 }

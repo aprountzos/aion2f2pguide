@@ -9,7 +9,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import YAML from 'yaml';
-import {mapOutsideFences} from './docs.mjs';
+import {mapOutsideFences, pageIndex, slugify} from './docs.mjs';
 
 export const NODE_TYPES = ['orichalcum', 'ruby', 'sapphire', 'asvata', 'yggdrasil'];
 export const NODE_LABELS = {
@@ -32,6 +32,23 @@ export const TABLE_IDS = [
   'leather-elyos',
   'milestones',
 ];
+/** Item database (data/items.yml). */
+export const ITEM_CATEGORIES = ['material', 'consumable', 'currency', 'equipment'];
+export const ITEM_GRADES = ['Common', 'Rare', 'Epic', 'Unique', 'Hero', 'Special'];
+export const ITEM_FACTIONS = ['both', 'asmodian', 'elyos'];
+const ITEM_FIELDS = ['id', 'name', 'category', 'type', 'grade', 'level', 'itemLevel', 'faction', 'tradable', 'note', 'obtain', 'use', 'pages', 'ref', 'checked'];
+
+/** Questions page (data/questions.yml). */
+export const QUESTION_TAGS = ['leveling', 'gathering', 'leather', 'crafting', 'gear', 'economy', 'general'];
+const QUESTION_FIELDS = ['id', 'date', 'question', 'answer', 'tags', 'pages', 'by', 'updated'];
+
+/** Which pages use which data file: the PR report (scripts/pr-report.mjs) uses this to list affected pages. */
+export const WIDGET_DATA = {
+  LevelFinder: ['data/zones.yml', 'data/nodes.yml', 'data/leather.yml', 'data/milestones.yml'],
+  ItemDatabase: ['data/items.yml'],
+  Questions: ['data/questions.yml'],
+};
+
 /** Blocks written as plain markdown between <!-- data:begin ID --> and <!-- data:end --> lines in a page. */
 export const BLOCK_IDS = ['patches'];
 
@@ -96,12 +113,14 @@ export function loadData(root) {
     leather: read('leather.yml'),
     milestones: read('milestones.yml'),
     patches: read('patches.yml'),
+    items: read('items.yml'),
+    questions: read('questions.yml'),
   };
-  errors.push(...validate(data));
+  errors.push(...validate(data, pageIndex(path.join(root, 'docs'))));
   return {data, errors};
 }
 
-function validate(d) {
+function validate(d, pages = new Map()) {
   const errs = [];
   const isStr = (v) => typeof v === 'string' && v.trim() !== '';
   const isNum = (v) => typeof v === 'number' && Number.isFinite(v) && v >= 0;
@@ -200,6 +219,81 @@ function validate(d) {
         }
         if (!p || !isStr(p.title)) errs.push(`${at}: "title" is required`);
         if (!p || !Array.isArray(p.changes) || p.changes.length === 0) errs.push(`${at}: "changes" must be a list with at least one line`);
+      });
+    }
+  }
+
+  // helpers for the two lists below
+  const isSlug = (v) => typeof v === 'string' && /^[a-z0-9]+(-[a-z0-9]+)*$/.test(v);
+  const isDate = (v) => /^\d{4}-\d{2}-\d{2}$/.test(String(v || '')) && !Number.isNaN(Date.parse(String(v)));
+  const checkPages = (at, list) => {
+    if (list === undefined) return;
+    if (!Array.isArray(list) || list.some((n) => !isStr(n))) return errs.push(`${at}: "pages" must be a list of page names, like [Raw Leather]`);
+    for (const n of list) if (!pages.has(slugify(n))) errs.push(`${at}: there is no page called "${n}" (use the file name of the page, for example "Raw Leather")`);
+  };
+  const checkFields = (at, row, allowed) => {
+    for (const k of Object.keys(row)) if (!allowed.includes(k)) errs.push(`${at}: unknown field "${k}". Allowed: ${allowed.join(', ')}`);
+  };
+
+  // items
+  if (d.items !== null) {
+    if (!Array.isArray(d.items)) errs.push('data/items.yml: must be a list');
+    else {
+      const ids = new Set();
+      const names = new Set();
+      d.items.forEach((it, i) => {
+        const at = `data/items.yml [${i + 1}]${it && it.name ? ` "${it.name}"` : ''}`;
+        if (!it || typeof it !== 'object') return errs.push(`${at}: empty entry`);
+        checkFields(at, it, ITEM_FIELDS);
+        if (!isSlug(it.id)) errs.push(`${at}: "id" is required: lowercase letters, digits and hyphens, like "raw-leather"`);
+        else if (ids.has(it.id)) errs.push(`${at}: id "${it.id}" is used twice (ids must be unique)`);
+        ids.add(it.id);
+        if (!isStr(it.name)) errs.push(`${at}: "name" is required`);
+        else if (names.has(it.name.toLowerCase())) errs.push(`${at}: the name is used twice`);
+        else names.add(it.name.toLowerCase());
+        if (!ITEM_CATEGORIES.includes(it.category)) errs.push(`${at}: "category" must be one of ${ITEM_CATEGORIES.join(', ')}`);
+        if (it.type !== undefined && !isStr(it.type)) errs.push(`${at}: "type" must be text`);
+        if (it.grade !== undefined && !ITEM_GRADES.includes(it.grade)) errs.push(`${at}: "grade" must be one of ${ITEM_GRADES.join(', ')} (leave it out when unknown)`);
+        for (const k of ['level', 'itemLevel']) {
+          if (it[k] !== undefined && !(Number.isInteger(it[k]) && it[k] >= 1 && it[k] <= 300)) errs.push(`${at}: "${k}" must be a whole number from 1 to 300`);
+        }
+        if (it.faction !== undefined && !ITEM_FACTIONS.includes(it.faction)) errs.push(`${at}: "faction" must be one of ${ITEM_FACTIONS.join(', ')}`);
+        if (it.tradable !== undefined && typeof it.tradable !== 'boolean') errs.push(`${at}: "tradable" must be true or false`);
+        for (const k of ['note', 'obtain', 'use']) if (it[k] !== undefined && !isStr(it[k])) errs.push(`${at}: "${k}" must be text`);
+        if (!isStr(it.obtain) && !isStr(it.use)) errs.push(`${at}: give "obtain" (where it comes from) or "use" (what it is for)`);
+        if (!isStr(it.ref) || !/^https:\/\/\S+$/.test(it.ref)) errs.push(`${at}: "ref" is required: an https:// link to your source`);
+        if (!isDate(it.checked)) errs.push(`${at}: "checked" must be a date like "2026-10-10" (in quotes)`);
+        checkPages(at, it.pages);
+      });
+    }
+  }
+
+  // questions
+  if (d.questions !== null) {
+    if (!Array.isArray(d.questions)) errs.push('data/questions.yml: must be a list');
+    else {
+      const ids = new Set();
+      let prev = '9999-99-99';
+      d.questions.forEach((q, i) => {
+        const at = `data/questions.yml [${i + 1}]${q && q.id ? ` "${q.id}"` : ''}`;
+        if (!q || typeof q !== 'object') return errs.push(`${at}: empty entry`);
+        checkFields(at, q, QUESTION_FIELDS);
+        if (!isSlug(q.id)) errs.push(`${at}: "id" is required: lowercase letters, digits and hyphens`);
+        else if (ids.has(q.id)) errs.push(`${at}: id "${q.id}" is used twice (ids must be unique)`);
+        ids.add(q.id);
+        if (!isDate(q.date)) errs.push(`${at}: "date" must be written like "2026-10-10" (in quotes)`);
+        else {
+          if (String(q.date) > prev) errs.push(`${at}: sort newest first (${q.date} is after the entry above)`);
+          prev = String(q.date);
+        }
+        if (q.updated !== undefined && !isDate(q.updated)) errs.push(`${at}: "updated" must be a date like "2026-10-10"`);
+        if (!isStr(q.question)) errs.push(`${at}: "question" is required`);
+        else if (!/\?\s*$/.test(q.question)) errs.push(`${at}: "question" should end with a question mark`);
+        if (!isStr(q.answer)) errs.push(`${at}: "answer" is required`);
+        if (!Array.isArray(q.tags) || q.tags.length === 0) errs.push(`${at}: "tags" needs at least one of ${QUESTION_TAGS.join(', ')}`);
+        else for (const t of q.tags) if (!QUESTION_TAGS.includes(t)) errs.push(`${at}: unknown tag "${t}". Use: ${QUESTION_TAGS.join(', ')}`);
+        if (q.by !== undefined && !isStr(q.by)) errs.push(`${at}: "by" must be text`);
+        checkPages(at, q.pages);
       });
     }
   }
@@ -305,6 +399,69 @@ export function buildTables(data, lang = 'en') {
     }),
   };
   return tables;
+}
+
+/** Page names -> [{label, url}] for the links under an item or an answer. Unknown names are skipped (lint reports them). */
+function pageLinks(names, pages) {
+  return (names || [])
+    .map((n) => pages.get(slugify(n)))
+    .filter(Boolean)
+    .map((p) => ({label: p.title, url: p.url}));
+}
+
+/** Item database for the website (src/generated/items.json). */
+export function buildItems(data, pages) {
+  return {
+    categories: ITEM_CATEGORIES,
+    grades: ITEM_GRADES,
+    items: (data.items || []).map((it) => ({
+      id: it.id,
+      name: it.name,
+      category: it.category,
+      type: it.type || '',
+      grade: it.grade || '',
+      level: it.level ?? null,
+      itemLevel: it.itemLevel ?? null,
+      faction: it.faction || 'both',
+      tradable: it.tradable ?? null,
+      note: it.note || '',
+      obtain: it.obtain || '',
+      use: it.use || '',
+      ref: it.ref,
+      checked: String(it.checked),
+      links: pageLinks(it.pages, pages),
+    })),
+  };
+}
+
+/** Answer text -> [{type: 'p'|'ol'|'ul', text | items}]. Blank lines separate blocks; "1. a" or "- a" lines make lists. */
+export function answerBlocks(text) {
+  return String(text)
+    .trim()
+    .split(/\n\s*\n/)
+    .map((chunk) => {
+      const lines = chunk.split('\n').map((l) => l.trim()).filter(Boolean);
+      if (lines.every((l) => /^\d+\.\s+/.test(l))) return {type: 'ol', items: lines.map((l) => l.replace(/^\d+\.\s+/, ''))};
+      if (lines.every((l) => /^[-*]\s+/.test(l))) return {type: 'ul', items: lines.map((l) => l.replace(/^[-*]\s+/, ''))};
+      return {type: 'p', text: lines.join(' ')};
+    });
+}
+
+/** Questions page for the website (src/generated/questions.json). */
+export function buildQuestions(data, pages) {
+  return {
+    tags: QUESTION_TAGS,
+    questions: (data.questions || []).map((q) => ({
+      id: q.id,
+      date: String(q.date),
+      updated: q.updated ? String(q.updated) : '',
+      question: q.question,
+      blocks: answerBlocks(q.answer),
+      tags: q.tags,
+      by: q.by || '',
+      links: pageLinks(q.pages, pages),
+    })),
+  };
 }
 
 export function tableToMarkdown(table) {

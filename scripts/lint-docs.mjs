@@ -77,7 +77,7 @@ function lintPage({abs, rel, parts}) {
     if (!/^\d{4}-\d{2}-\d{2}$/.test(data.updated || '') || Number.isNaN(Date.parse(data.updated))) {
       err(file, 1, 'frontmatter needs "updated: YYYY-MM-DD" (the date you last verified the data)');
     }
-    for (const flag of ['comments', 'staleness', 'corrections']) {
+    for (const flag of ['comments', 'staleness', 'corrections', 'qa']) {
       if (data[flag] !== undefined && !/^(true|false)$/.test(data[flag])) err(file, 1, `"${flag}" must be true or false`);
     }
     if (!/^-?\d+$/.test(data.sidebar_position || '')) {

@@ -1,0 +1,132 @@
+.wrap {
+  margin: 1rem 0 1.5rem;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1rem;
+  align-items: center;
+  margin-bottom: 0.6rem;
+}
+
+.input {
+  padding: 0.35rem 0.6rem;
+  border: 1px solid var(--ifm-color-emphasis-400);
+  border-radius: 6px;
+  background: var(--ifm-background-color);
+  color: var(--ifm-font-color-base);
+  font: inherit;
+  font-size: 0.9rem;
+  min-width: 0;
+}
+
+.search {
+  flex: 1 1 14rem;
+}
+
+.small {
+  width: 4.5rem;
+}
+
+.label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+}
+
+.link {
+  border: 0;
+  background: none;
+  color: var(--ifm-link-color);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.9rem;
+  padding: 0.2rem 0.4rem;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.scroll {
+  overflow-x: auto;
+}
+
+.scroll table {
+  margin-bottom: 0;
+  font-size: 0.9rem;
+}
+
+.scroll td,
+.scroll th {
+  vertical-align: top;
+}
+
+.sortButton {
+  border: 0;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  font-weight: inherit;
+  padding: 0;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.sortButton:hover {
+  color: var(--ifm-link-color);
+}
+
+.sub {
+  font-size: 0.8rem;
+  color: var(--ifm-color-emphasis-700);
+  margin-top: 0.15rem;
+}
+
+.more {
+  white-space: nowrap;
+  font-size: 0.85rem;
+}
+
+/* grades: the word is always shown, the colour only helps */
+.grade {
+  display: inline-block;
+  padding: 0.05rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--ifm-color-emphasis-400);
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.gRare {
+  border-color: #3b82f6;
+}
+
+.gEpic {
+  border-color: #8b5cf6;
+}
+
+.gUnique {
+  border-color: #d4a017;
+}
+
+.gHero {
+  border-color: #f97316;
+}
+
+.gSpecial {
+  border-color: #14b8a6;
+}
+
+.loading {
+  color: var(--ifm-color-emphasis-700);
+}
+
+.caption {
+  margin: 0.4rem 0 0;
+  font-size: 0.8rem;
+  color: var(--ifm-color-emphasis-700);
+}

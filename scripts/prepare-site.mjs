@@ -4,12 +4,15 @@
 //
 // The pages themselves are NOT generated: docs/ is the source. This script only writes
 //   - docs/changelog.md          from CHANGELOG.md (git-ignored)
-//   - src/generated/data.json    tables and lists for the website components (git-ignored)
+//   - src/generated/data.json       tables and lists for the website components (git-ignored)
+//   - src/generated/items.json      the item database (<ItemDatabase />)
+//   - src/generated/questions.json  the answered questions (<Questions />)
 
 import fs from 'node:fs';
 import path from 'node:path';
 import {meta, root} from './site-meta.mjs';
-import {NODE_LABELS, NODE_TYPES, buildTables, loadData} from './lib/data.mjs';
+import {NODE_LABELS, NODE_TYPES, buildItems, buildQuestions, buildTables, loadData} from './lib/data.mjs';
+import {pageIndex} from './lib/docs.mjs';
 
 const DOCS = path.join(root, 'docs');
 const GENERATED = path.join(root, 'src', 'generated');
@@ -53,6 +56,9 @@ fs.writeFileSync(
     tables: {en: buildTables(data, 'en')},
   }) + '\n',
 );
+const pages = pageIndex(DOCS);
+fs.writeFileSync(path.join(GENERATED, 'items.json'), JSON.stringify(buildItems(data, pages)) + '\n');
+fs.writeFileSync(path.join(GENERATED, 'questions.json'), JSON.stringify(buildQuestions(data, pages)) + '\n');
 if (!fs.existsSync(path.join(GENERATED, 'contributors.json'))) {
   fs.writeFileSync(path.join(GENERATED, 'contributors.json'), '[]\n');
 }

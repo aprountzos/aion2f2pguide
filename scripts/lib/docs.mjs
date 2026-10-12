@@ -158,3 +158,33 @@ export function parseJsxProps(attrString) {
   }
   return {props, error: null};
 }
+
+// ---------------------------------------------------------------- page lookup by name
+
+/** The site address of a page ("/gathering/nodes/ore-orichalcum"), from its file path and frontmatter. */
+export function pageUrl(rel, slug) {
+  let id = docId(rel);
+  if (id === 'index') id = '';
+  else if (id.endsWith('/index')) id = id.slice(0, -'/index'.length);
+  if (slug) {
+    if (slug.startsWith('/')) return slug;
+    const dir = id.includes('/') ? id.slice(0, id.lastIndexOf('/')) : '';
+    return '/' + [dir, slug].filter(Boolean).join('/');
+  }
+  return '/' + id;
+}
+
+/**
+ * Pages by name: Map(slugified file name -> {rel, url, title}). Data files refer to pages by file name
+ * ("Raw Leather" or "raw-leather"), see `pages:` in data/items.yml and data/questions.yml.
+ */
+export function pageIndex(dir) {
+  const index = new Map();
+  for (const p of collectPages(dir, {skip: ['changelog.md']})) {
+    const {fm, body} = readPage(p.abs);
+    const title = (body.match(/^#\s+(.+?)\s*$/m) || [])[1] || p.rel;
+    const entry = {rel: p.rel, url: pageUrl(p.rel, parseFrontmatter(fm).slug), title};
+    index.set(slugify(path.posix.basename(p.rel).replace(/\.mdx?$/, '')), entry);
+  }
+  return index;
+}

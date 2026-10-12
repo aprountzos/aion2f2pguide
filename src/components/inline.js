@@ -1,14 +1,27 @@
 import React from 'react';
 
-/** Renders the little bit of markdown that data cells use: **bold**. */
+/**
+ * Renders the little bit of markdown that data cells and answers use:
+ * **bold**, `code` and [text](https://link). Only https:// links are made clickable.
+ */
 export function inline(text) {
-  const parts = String(text ?? '').split(/(\*\*[^*]+\*\*)/g);
-  return parts.map((p, i) =>
-    /^\*\*[^*]+\*\*$/.test(p) ? <strong key={i}>{p.slice(2, -2)}</strong> : <React.Fragment key={i}>{p}</React.Fragment>,
-  );
+  const parts = String(text ?? '').split(/(\*\*[^*]+\*\*|`[^`]+`|\[[^\]]+\]\(https:\/\/[^)\s]+\))/g);
+  return parts.map((p, i) => {
+    if (/^\*\*[^*]+\*\*$/.test(p)) return <strong key={i}>{p.slice(2, -2)}</strong>;
+    if (/^`[^`]+`$/.test(p)) return <code key={i}>{p.slice(1, -1)}</code>;
+    const link = /^\[([^\]]+)\]\((https:\/\/[^)\s]+)\)$/.exec(p);
+    if (link) {
+      return (
+        <a key={i} href={link[2]} rel="noopener noreferrer">
+          {link[1]}
+        </a>
+      );
+    }
+    return <React.Fragment key={i}>{p}</React.Fragment>;
+  });
 }
 
-export const plain = (text) => String(text ?? '').replace(/\*\*/g, '');
+export const plain = (text) => String(text ?? '').replace(/\*\*/g, '').replace(/\[([^\]]+)\]\(https:\/\/[^)\s]+\)/g, '$1');
 
 /** "11–20" -> [11, 20]; "18" -> [18, 18]; anything else -> null */
 export function parseLevels(text) {

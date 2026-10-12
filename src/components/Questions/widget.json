@@ -1,0 +1,10 @@
+{
+  "description": "Blog-style list of answered questions from data/questions.yml, with search and tag filter, and a button to ask a new question.",
+  "props": {
+    "tag": {
+      "type": "string",
+      "required": false,
+      "values": ["leveling", "gathering", "leather", "crafting", "gear", "economy", "general"]
+    }
+  }
+}

@@ -1,0 +1,110 @@
+.wrap {
+  margin: 1rem 0 1.5rem;
+}
+
+.ask {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-left: 4px solid var(--ifm-color-primary);
+  border-radius: 6px;
+  margin-bottom: 1.25rem;
+}
+
+.askText {
+  font-size: 0.9rem;
+  color: var(--ifm-color-emphasis-700);
+  margin-top: 0.2rem;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1rem;
+  align-items: center;
+}
+
+.input {
+  flex: 1 1 14rem;
+  padding: 0.35rem 0.6rem;
+  border: 1px solid var(--ifm-color-emphasis-400);
+  border-radius: 6px;
+  background: var(--ifm-background-color);
+  color: var(--ifm-font-color-base);
+  font: inherit;
+  font-size: 0.9rem;
+  min-width: 0;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.tag {
+  border: 1px solid var(--ifm-color-emphasis-400);
+  background: none;
+  color: inherit;
+  border-radius: 999px;
+  padding: 0.15rem 0.7rem;
+  font: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.tag[aria-pressed='true'] {
+  background: var(--ifm-color-primary);
+  border-color: var(--ifm-color-primary);
+  color: var(--ifm-color-white, #fff);
+}
+
+.count {
+  margin: 0.75rem 0 0;
+  font-size: 0.85rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.post {
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--ifm-toc-border-color);
+  scroll-margin-top: calc(var(--ifm-navbar-height) + 1rem);
+}
+
+.question {
+  font-size: 1.3rem;
+  margin: 0 0 0.25rem;
+}
+
+.question a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.question a:hover {
+  text-decoration: underline;
+}
+
+.meta {
+  font-size: 0.85rem;
+  color: var(--ifm-color-emphasis-700);
+  margin-bottom: 0.75rem;
+}
+
+.chip {
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0 0.5rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 999px;
+  font-size: 0.78rem;
+}
+
+.more {
+  font-size: 0.9rem;
+  margin-bottom: 0;
+}

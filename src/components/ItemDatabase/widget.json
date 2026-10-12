@@ -1,0 +1,14 @@
+{
+  "description": "Item database with filters (search, category, type, grade, faction, level), sortable columns and shareable links. Data: data/items.yml.",
+  "props": {
+    "category": {
+      "type": "string",
+      "required": false,
+      "values": ["material", "consumable", "currency", "equipment"]
+    },
+    "type": {
+      "type": "string",
+      "required": false
+    }
+  }
+}
