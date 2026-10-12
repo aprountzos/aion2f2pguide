@@ -3,10 +3,11 @@
 //   - writes the new section in CHANGELOG.md (from the Unreleased notes, or from commit titles)
 //   - bumps the version in package.json and package-lock.json
 //   - commits "release: vX.Y.Z"
-// It never pushes and never tags. Tagging and the GitHub Release happen automatically after the
-// release pull request (dev -> main) is merged. See RELEASING.md.
+// It never tags. Tagging and the GitHub Release happen automatically after the release pull request
+// (dev -> main) is merged. With --push it also pushes the branch and opens that pull request
+// (needs the GitHub CLI `gh`; without it the script prints the link). See RELEASING.md.
 //
-//   npm run release -- patch|minor|major|x.y.z [--dry-run] [--date YYYY-MM-DD] [--data-checked YYYY-MM-DD]
+//   npm run release -- patch|minor|major|x.y.z [--push] [--dry-run] [--date YYYY-MM-DD] [--data-checked YYYY-MM-DD]
 
 import fs from 'node:fs';
 import path from 'node:path';
@@ -20,6 +21,7 @@ const flag = (name) => {
   return i === -1 ? undefined : args[i + 1];
 };
 const dry = args.includes('--dry-run');
+const push = args.includes('--push');
 const kind = args.find((a, i) => !a.startsWith('--') && !['--date', '--data-checked'].includes(args[i - 1]));
 const today = new Date().toISOString().slice(0, 10);
 const date = flag('--date') || today;
@@ -32,7 +34,7 @@ const fail = (msg) => {
 const git = (...a) => execFileSync('git', a, {cwd: root, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe']}).trim();
 
 if (!kind) {
-  fail('Usage: npm run release -- patch|minor|major|x.y.z [--dry-run] [--date YYYY-MM-DD] [--data-checked YYYY-MM-DD]');
+  fail('Usage: npm run release -- patch|minor|major|x.y.z [--push] [--dry-run] [--date YYYY-MM-DD] [--data-checked YYYY-MM-DD]');
 }
 if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) fail('--date must look like 2026-10-10');
 if (dataChecked && !/^\d{4}-\d{2}-\d{2}$/.test(dataChecked)) fail('--data-checked must look like 2026-10-10');
@@ -157,9 +159,35 @@ if (dataChecked) {
 git('add', ...touched);
 git('commit', '-m', `release: v${next}`);
 
-console.log(`release: committed "release: v${next}". Next steps (details in RELEASING.md):`);
-console.log(`  1. Read CHANGELOG.md and edit the wording if you like (git commit --amend).`);
-console.log(`  2. git push origin ${branch}`);
-console.log(`  3. Open a pull request ${branch} -> main titled "Release v${next}" and merge it with "Create a merge commit".`);
-console.log(`     (with the GitHub CLI: gh pr create --base main --head ${branch} --title "Release v${next}" --fill)`);
-console.log(`  4. The site deploys and the tag v${next} + GitHub Release are created automatically.`);
+console.log(`release: committed "release: v${next}".`);
+
+if (!push) {
+  console.log(`Next steps (details in RELEASING.md):`);
+  console.log(`  1. Read CHANGELOG.md and edit the wording if you like (git commit --amend).`);
+  console.log(`  2. git push origin ${branch}`);
+  console.log(`  3. Open a pull request ${branch} -> main titled "Release v${next}" and merge it with "Create a merge commit".`);
+  console.log(`     (with the GitHub CLI: gh pr create --base main --head ${branch} --title "Release v${next}" --fill)`);
+  console.log(`  4. The site deploys and the tag v${next} + GitHub Release are created automatically.`);
+  console.log(`Next time, add --push to do steps 2 and 3 in one go.`);
+  process.exit(0);
+}
+
+// --- --push: push the branch and open the release pull request
+try {
+  execFileSync('git', ['push', 'origin', branch], {cwd: root, stdio: 'inherit'});
+} catch {
+  fail(
+    `the release commit is made, but pushing "${branch}" failed. If GitHub says the branch is protected ` +
+      `(repository rule violations), add yourself to the Bypass list of the "${branch === 'dev' ? 'dev' : 'branch'}" ruleset ` +
+      `(MAINTAINING.md, 1.8) and run: git push origin ${branch}`,
+  );
+}
+const title = `Release v${next}`;
+try {
+  execFileSync('gh', ['pr', 'create', '--base', 'main', '--head', branch, '--title', title, '--fill'], {cwd: root, stdio: 'inherit'});
+  console.log(`release: pull request opened. Merge it with "Create a merge commit" once build and policy are green.`);
+} catch {
+  console.log(`release: pushed. Open the pull request in the browser (or install the GitHub CLI):`);
+  console.log(`  ${meta.repoUrl}/compare/main...${branch}?expand=1   (title "${title}")`);
+  console.log(`Merge it with "Create a merge commit". The site deploys and v${next} is tagged automatically.`);
+}

@@ -1,10 +1,11 @@
 {
   "label": "Reference",
   "position": 9,
-  "collapsed": false,
+  "collapsed": true,
   "link": {
     "type": "generated-index",
     "title": "Reference",
-    "slug": "/category/reference"
+    "slug": "/category/reference",
+    "description": "Tables to look things up: zones, items, patches, sources."
   }
 }

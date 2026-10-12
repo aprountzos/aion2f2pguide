@@ -1,10 +1,11 @@
 {
   "label": "Crafting",
   "position": 5,
-  "collapsed": false,
+  "collapsed": true,
   "link": {
     "type": "generated-index",
     "title": "Crafting",
-    "slug": "/category/crafting"
+    "slug": "/category/crafting",
+    "description": "Crafting professions and what each one is good for."
   }
 }

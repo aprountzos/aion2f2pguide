@@ -1,10 +1,11 @@
 {
   "label": "Leather",
   "position": 4,
-  "collapsed": false,
+  "collapsed": true,
   "link": {
     "type": "generated-index",
     "title": "Leather",
-    "slug": "/category/leather"
+    "slug": "/category/leather",
+    "description": "Raw Leather drop rates, the best mobs to farm, and Strong Leather."
   }
 }

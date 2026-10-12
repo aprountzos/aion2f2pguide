@@ -188,3 +188,67 @@ export function pageIndex(dir) {
   }
   return index;
 }
+
+// ---------------------------------------------------------------- the home page directory
+
+/**
+ * The sections of the guide for the home page, read from docs/: one section per numbered folder
+ * (docs/03-gathering/), its label and description from _category_.json, its pages in sidebar order.
+ * New pages and folders show up on the home page without editing it.
+ */
+export function buildSections(dir) {
+  const readJson = (file) => {
+    try {
+      return JSON.parse(fs.readFileSync(file, 'utf8'));
+    } catch {
+      return {};
+    }
+  };
+  const order = (a, b) => a.position - b.position || a.title.localeCompare(b.title);
+  const sections = [];
+  for (const e of fs.readdirSync(dir, {withFileTypes: true})) {
+    if (!e.isDirectory() || e.name.startsWith('.') || e.name.startsWith('_') || !/^\d+[-_ ]/.test(e.name)) continue;
+    const folder = path.join(dir, e.name);
+    const cat = readJson(path.join(folder, '_category_.json'));
+    const pages = [];
+    const groups = [];
+    for (const f of fs.readdirSync(folder, {withFileTypes: true})) {
+      if (f.name.startsWith('.') || f.name.startsWith('_')) continue;
+      if (f.isFile() && /\.mdx?$/.test(f.name)) {
+        const rel = `${e.name}/${f.name}`;
+        const {fm, body} = readPage(path.join(folder, f.name));
+        const front = parseFrontmatter(fm);
+        pages.push({
+          title: front.sidebar_label || (body.match(/^#\s+(.+?)\s*$/m) || [])[1] || f.name,
+          url: pageUrl(rel, front.slug),
+          position: Number.isFinite(Number(front.sidebar_position)) ? Number(front.sidebar_position) : 999,
+        });
+      } else if (f.isDirectory() && !f.name.startsWith('_')) {
+        const sub = readJson(path.join(folder, f.name, '_category_.json'));
+        const count = collectPages(path.join(folder, f.name)).length;
+        if (count) {
+          groups.push({
+            title: sub.label || stripNumberPrefix(f.name),
+            url: sub.link && sub.link.slug ? sub.link.slug : null,
+            count,
+            position: typeof sub.position === 'number' ? sub.position : 999,
+          });
+        }
+      }
+    }
+    if (!pages.length && !groups.length) continue;
+    pages.sort(order);
+    groups.sort(order);
+    const strip = ({title, url, count}) => (count ? {title, url, count} : {title, url});
+    sections.push({
+      title: cat.label || stripNumberPrefix(e.name),
+      description: (cat.link && cat.link.description) || '',
+      url: (cat.link && cat.link.slug) || (pages[0] && pages[0].url) || '/',
+      position: typeof cat.position === 'number' ? cat.position : Number(e.name.match(/^\d+/)[0]),
+      pages: pages.map(strip),
+      groups: groups.map(strip),
+    });
+  }
+  sections.sort(order);
+  return sections.map(({position, ...rest}) => rest);
+}

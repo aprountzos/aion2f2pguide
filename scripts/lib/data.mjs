@@ -47,6 +47,7 @@ export const WIDGET_DATA = {
   LevelFinder: ['data/zones.yml', 'data/nodes.yml', 'data/leather.yml', 'data/milestones.yml'],
   ItemDatabase: ['data/items.yml'],
   Questions: ['data/questions.yml'],
+  Home: ['data/zones.yml', 'data/nodes.yml', 'data/leather.yml', 'data/milestones.yml', 'data/patches.yml'],
 };
 
 /** Blocks written as plain markdown between <!-- data:begin ID --> and <!-- data:end --> lines in a page. */

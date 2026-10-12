@@ -1,10 +1,11 @@
 {
   "label": "Gear",
   "position": 6,
-  "collapsed": false,
+  "collapsed": true,
   "link": {
     "type": "generated-index",
     "title": "Gear",
-    "slug": "/category/gear"
+    "slug": "/category/gear",
+    "description": "Enhancing and upgrading your equipment."
   }
 }
