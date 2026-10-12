@@ -1,0 +1,4 @@
+{
+  "description": "The home page: a level and faction picker, the list of sections built from the docs folders, the latest patch and ways to contribute. Used only on docs/index.mdx.",
+  "props": {}
+}

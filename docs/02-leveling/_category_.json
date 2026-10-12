@@ -1,10 +1,11 @@
 {
   "label": "Leveling",
   "position": 2,
-  "collapsed": false,
+  "collapsed": true,
   "link": {
     "type": "generated-index",
     "title": "Leveling",
-    "slug": "/category/leveling"
+    "slug": "/category/leveling",
+    "description": "Where to go at every level from 1 to 45, for both factions."
   }
 }

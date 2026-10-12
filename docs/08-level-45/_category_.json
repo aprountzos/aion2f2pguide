@@ -1,10 +1,11 @@
 {
   "label": "Level 45",
   "position": 8,
-  "collapsed": false,
+  "collapsed": true,
   "link": {
     "type": "generated-index",
     "title": "Level 45",
-    "slug": "/category/level-45"
+    "slug": "/category/level-45",
+    "description": "What changes at the level cap and what to do next."
   }
 }

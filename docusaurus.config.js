@@ -48,6 +48,12 @@ const config = {
         docs: {
           routeBasePath: '/', // docs-only site, no /docs prefix
           sidebarPath: './sidebars.js',
+          // The home page (docs/index.mdx) is a full-width landing page: keep it out of the sidebar
+          // (and out of the previous/next links of the pages around it).
+          async sidebarItemsGenerator({defaultSidebarItemsGenerator, ...args}) {
+            const items = await defaultSidebarItemsGenerator(args);
+            return items.filter((item) => !(item.type === 'doc' && item.id === 'index'));
+          },
           // "Edit this page" opens the page (docs/...) on the dev branch, where pull requests go.
           editUrl: `${meta.repoUrl}/edit/${meta.editBranch}/`,
           // who changed a page last (from git; needs the full history, so only when .git exists)
@@ -99,6 +105,8 @@ const config = {
           {to: '/leveling/level-finder', label: 'Level Finder', position: 'left'},
           {to: '/gathering/gathering-by-level', label: 'Gathering', position: 'left'},
           {to: '/leather/leather-farming-by-level', label: 'Leather', position: 'left'},
+          {to: '/reference/item-database', label: 'Items', position: 'left'},
+          {to: '/questions', label: 'Questions', position: 'left'},
           {to: '/contribute', label: 'Contribute', position: 'right'},
           {href: meta.repoUrl, label: 'GitHub', position: 'right'},
         ],
