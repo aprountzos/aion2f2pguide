@@ -28,7 +28,7 @@ New work is collected on `dev` and published together as a numbered version. The
 8. On the next screen, click **Create pull request**. A form appears with a checklist. Fill it in: what you changed, and **where the information comes from**.
 9. Click **Create pull request** again. Done.
 
-Now wait. Within a minute the automatic checks run at the bottom of your PR. A green tick means the content is valid. A red cross means something needs fixing: click **Details** to see which line.
+Now wait. Within a minute the automatic checks run at the bottom of your PR. A green tick means the content is valid. A red cross means something needs fixing: click **Details** to see which line. A bot also posts a comment on the PR, a **content report** that lists the pages and data rows you changed, the pages that show that data, and any problem with its file and line number. Pull requests from a fork get the same report in the **Summary** of the check instead of a comment.
 
 To change your PR after review comments, open the **Files changed** tab, click the three dots on the file, choose **Edit file**, and commit to the same branch. The PR updates by itself.
 
@@ -67,6 +67,7 @@ You need a [GitHub](https://github.com) account, [Git](https://git-scm.com/downl
    ```bash
    npm run check
    ```
+   To see the same content report the bot will post (changed pages and data rows, problems), commit your work and run `npm run pr-report -- --base upstream/dev`.
 5. Commit and push:
    ```bash
    git add docs data
