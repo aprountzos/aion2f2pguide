@@ -1,0 +1,40 @@
+# Gathering node counts per zone. Source: AllThings.How node maps and Raid Relay (see Sources).
+#
+# zone:  the exact zone name from zones.yml (the faction comes from there).
+# nodes: node type -> number of nodes in the zone.
+#        Types: orichalcum, ruby, sapphire, asvata, yggdrasil.
+#        Write `yggdrasil: ~` when the zone has the node type but the count is not known.
+# note:  distance to the nearest waypoint, or a short tip. Keep it short.
+# levelText (optional): replaces the zone level in the table, for conflicting sources.
+#
+# Zones appear in the tables in the order of this file. Keep them sorted by level.
+# After editing run `npm run data`, then `npm run check`.
+
+asmodian:
+  - {zone: Dredgion Crash Site, nodes: {orichalcum: 180}, note: "Quai Campsite ~80 m. Best early ore zone"}
+  - {zone: Nameless Cemetery, nodes: {asvata: 64}, note: "Gravekeeper Camp ~140 m"}
+  - {zone: Silent Hill, nodes: {}, note: "No big cluster in my data"}
+  - {zone: Sanctum Outpost, nodes: {sapphire: 70}, note: "Temporary Retreat ~230 m"}
+  - {zone: Tranein Highland, nodes: {ruby: 70}, note: "Creion Campsite ~190 m"}
+  - {zone: Moslan Forest, nodes: {orichalcum: 170, asvata: 52}, note: "Healing Spring ~230 m (Asvata)"}
+  - {zone: Dranactus, nodes: {sapphire: 60}}
+  - {zone: Basfelt Ruins, nodes: {ruby: 120}, note: "Largest Ruby cluster. Graverobber Campsite ~130 m"}
+  - {zone: Fafnite Deposit, nodes: {orichalcum: 180}, note: "Steel Hammer Workcamp ~110 m"}
+  - {zone: Southern Gribade Highland, nodes: {asvata: 42}, note: "Kumrica's Cellar ~70 m, shortest walk"}
+  - {zone: Lagta Fortress, nodes: {sapphire: 70}, note: "Kumrica's Cellar ~770 m, longest trip"}
+
+elyos:
+  - {zone: Western Cantas Valley, nodes: {orichalcum: 36}}
+  - {zone: Eastern Cantas Valley, nodes: {orichalcum: 36}}
+  - {zone: Ellun River Marsh, nodes: {yggdrasil: ~}}
+  - {zone: Ellun River Midstream, nodes: {orichalcum: 84, sapphire: 66}, note: "Ruin Exploration Campsite ~110 m / ~40 m. Best all-rounder for levels 18–30"}
+  - {zone: Verteron Fortress Ruins, nodes: {orichalcum: 48, ruby: 70}, note: "Collapsed Pillar ~70 m"}
+  - {zone: Pilgrim's Ridge, nodes: {sapphire: 60}}
+  - {zone: Aullaeu Village, nodes: {orichalcum: 42}}
+  - {zone: Forest of Exiles, nodes: {yggdrasil: ~}}
+  - {zone: Western Altamia Highland, nodes: {orichalcum: 36}}
+  - {zone: Altamia Canyon, nodes: {yggdrasil: ~}}
+  - {zone: Southern Altamia Highland, nodes: {ruby: 60}, note: "Highland's End Campsite ~260 m"}
+  - {zone: Scarlet Forest, nodes: {sapphire: 66}, note: "Teleport statue only ~10 m away"}
+  - {zone: Garden of the Illusion God, nodes: {ruby: 66}, note: "East Observatory ~220 m"}
+  - {zone: Kraka Footpath, nodes: {orichalcum: 72}, levelText: "45 per map, 39–42 per route guide", note: "Notos Legion Outpost ~70 m"}

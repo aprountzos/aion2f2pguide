@@ -1,0 +1,15 @@
+# Game patches that changed something in this guide, newest first.
+# date:    YYYY-MM-DD of the game patch.   title: a short headline.
+# changes: what changed, with before and after values where known. Markdown allowed.
+# pages:   notes of this guide that were updated because of it (exact note names).
+# source:  where the patch is described (a link in markdown).
+# Add a new entry at the TOP when you update the guide after a game patch.
+# After editing run `npm run data`, then `npm run check`.
+
+- date: "2026-10-07"
+  title: Higher Raw Leather drop rates
+  changes:
+    - "Raw Leather drop chance raised on 128 creatures in Verteron, Altgard and Chaotic Lower Reshanta."
+    - "90 creatures: 3.9% to 5.8%. 18 creatures: 0.97% to 1.5%. 8 creatures: 1.9% to 2.9%. 7 creatures: 4.7% to 6.1%. 4 creatures: 3.5% to 4.5%. 1 creature: 11.7% to 15.2%."
+  pages: [Raw Leather, Leather Farming by Level]
+  source: "[Oct 7 update on AllThings.How](https://allthings.how/aion-update-higher-raw-leather-drops-and-an-eternal-sun-skin-chest/)"

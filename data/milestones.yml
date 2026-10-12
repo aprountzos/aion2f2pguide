@@ -1,0 +1,21 @@
+# What unlocks at which level (Global client, level cap 45 in Season 1).
+# level: how it is shown ("5 / 6", "21, 23, 25"). Every number in it is used by the Level Finder.
+# text:  markdown allowed (**bold**). Keep it short.
+# After editing run `npm run data`, then `npm run check`.
+
+- {level: "1", text: "Four base skills"}
+- {level: "4", text: "Skill points start"}
+- {level: "5 / 6", text: "Wings (Elyos 5, Asmodian 6), Daeva status"}
+- {level: "10", text: "**Gathering**, move to Verteron/Altgard, crafting specialty quests, first sealed dungeons"}
+- {level: "12", text: "Nezekan Daevanion board"}
+- {level: "15", text: "**Raw Leather usable** (item requirement)"}
+- {level: "20", text: "Zikel board"}
+- {level: "21, 23, 25", text: "New base skills"}
+- {level: "22", text: "**First Stigma slot** (all 13 Stigma skills), **second Ascension** (Intermediate Daeva Wings), Odyle Energy starts building"}
+- {level: "25", text: "Sealed dungeon tier"}
+- {level: "27", text: "Stigma slot 2"}
+- {level: "30", text: "Vaizel board, **Daily Dungeon unlocks**, sealed dungeon tier"}
+- {level: "32", text: "Stigma slot 3, **third Ascension** (Superior Daeva Wings)"}
+- {level: "37", text: "Stigma slot 4. Elyos story sends you to the Fire Temple"}
+- {level: "40", text: "Triniel board"}
+- {level: "45", text: "**Cap** (Global Season 1). Azphel board, fourth Ascension (Ultimate Daeva Wings), story ends, **Abyss opens**"}

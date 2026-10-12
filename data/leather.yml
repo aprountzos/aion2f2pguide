@@ -1,0 +1,31 @@
+# Raw Leather: monsters that drop it, per faction. Rates are the values after the Oct 7 2026 update.
+# Sources: AllThings.How raw leather guide and Oct 7 update (see Sources).
+#
+# level: "11", "11–16" or "—" when unknown. Markdown bold (**36**) is allowed in every text field.
+# mob:   the monster's name exactly as in game.     where: zones where it spawns.
+# rate:  drop chance as text, for example "5.8%" or "~5.8%". Used for sorting and shown as written.
+# extra: other drops or tips (column "Also drops" for Asmodian, "Notes" for Elyos).
+#
+# Add a row by copying a line. Rows are shown in the order of this file, sorted by level.
+# After editing run `npm run data`, then `npm run check`.
+
+asmodian:
+  - {level: "11", mob: Contaminated Swarm, where: "Calderon Canyon, Dredgion Crash Site", rate: "5.8%", extra: "Refining Stone 0.65%"}
+  - {level: "11–16", mob: Contaminated Swarm Egg, where: "same", rate: "5.8%", extra: "Refining Stone 0.65%"}
+  - {level: "10–32", mob: Decomposed Lupyllini, where: "Battlescar Mound, Dredgion Crash Site, Tranein Highland, Moslan Forest", rate: "5.8%", extra: "Fresh Raw Meat 4.9%, Tempest Gloves 0.12%"}
+  - {level: "21", mob: Withered Armadon, where: "Moslan Forest", rate: "5.8%", extra: "Kina, Armadon Soul Points (pet insight)"}
+  - {level: "—", mob: Red Shell Mole, where: "Dredgion Crash Site (132 spawns)", rate: "on the Oct 7 list", extra: ""}
+  - {level: "—", mob: Young Tog / Aberrant Tog, where: "Battlescar Mound, Silent Hill, Sanctum Outpost, Fang Hideout / Purifying Forest", rate: "on the Oct 7 list", extra: ""}
+  - {level: "35", mob: Giant Ore Insectoid, where: "Fafnite Deposit (115 spawns)", rate: "2.9%", extra: "Refining Stone 0.32%"}
+  - {level: "**36**", mob: "**Giant Ore Insectoid Adult**", where: "Fafnite Deposit (11 spawns)", rate: "**5.8%**", extra: "Refining Stone 0.65%, Expert's Refining Stone 0.16%"}
+  - {level: "—", mob: Brax groups, where: "open highland", rate: "yes", extra: "Kina, Fera Soul Crystals"}
+  - {level: "45", mob: "**Predator Garsan** (named)", where: "Moslan Forest", rate: "**62.2%**", extra: "party recommended"}
+
+elyos:
+  - {level: "11–12", mob: "Stonebeak Crestlich, Gentle Popoku", where: "Western Cantas Valley (Coastal Camp)", rate: "beasts here ~5.8%", extra: "tight groups, fast respawn"}
+  - {level: "22", mob: "Ridge Ursus, Ridge Violent Ursus, bees", where: "Pilgrim's Ridge (Verteron Fortress Valley waypoint, glide west)", rate: "~5.8%", extra: "also beef and fruit"}
+  - {level: "44–45", mob: Confused Ursus, where: "Garden of the Illusion God (Pilgrim's Rest)", rate: "~5.8%", extra: "dense blue packs, good for AoE"}
+  - {level: "45", mob: "**Furious Saursus** (named)", where: "Night Dew Cave", rate: "**62.2%**", extra: "party"}
+  - {level: "45", mob: "**Bloodfang Pnyn** (named)", where: "Northern Tolbas Forest", rate: "**62.2%**", extra: "party"}
+  - {level: "45", mob: "**Blooming Korin** (named)", where: "Ellun River Midstream", rate: "**51.8%**", extra: "party"}
+  - {level: "—", mob: Neikel of the East (field boss), where: "Eastern Cantas Valley", rate: "drops it", extra: "party"}

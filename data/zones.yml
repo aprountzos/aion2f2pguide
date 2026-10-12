@@ -1,0 +1,64 @@
+# Zones with their level range, sealed dungeons and side quests.
+# Source: Raid Relay interactive map (Global client). See docs/09-reference/sources.md
+#
+# levels:   "11–20" (en dash) or "18" for a single level. Used by the Level Finder.
+# dungeons: number of sealed dungeons in the zone.   quests: number of side quests.
+# Add a zone here first. Gathering nodes (nodes.yml) refer to a zone by its exact name.
+#
+# After editing run `npm run data` (it rewrites the tables in the notes) and `npm run check`.
+
+asmodian: # Altgard
+  - {name: Dredgion Crash Site, levels: "11–20", dungeons: 4, quests: 3}
+  - {name: Nameless Cemetery, levels: "13–15", dungeons: 6, quests: 2}
+  - {name: Silent Hill, levels: "18", dungeons: 0, quests: 0}
+  - {name: Sanctum Outpost, levels: "18–20", dungeons: 4, quests: 2}
+  - {name: Tranein Highland, levels: "20", dungeons: 0, quests: 2}
+  - {name: Moslan Forest, levels: "21–22", dungeons: 7, quests: 8}
+  - {name: Calderon Canyon, levels: "22", dungeons: 3, quests: 1}
+  - {name: Uruthumheim, levels: "24–25", dungeons: 3, quests: 2}
+  - {name: Nornir Assembly, levels: "25–45", dungeons: 0, quests: 5}
+  - {name: Purifying Forest, levels: "26–30", dungeons: 4, quests: 6}
+  - {name: Battlescar Mound, levels: "30–33", dungeons: 3, quests: 5}
+  - {name: Dranactus, levels: "32", dungeons: 6, quests: 0}
+  - {name: Basfelt Ruins, levels: "33–34", dungeons: 4, quests: 5}
+  - {name: Mahindel Cliff, levels: "35", dungeons: 0, quests: 1}
+  - {name: Fafnite Deposit, levels: "35–37", dungeons: 1, quests: 1}
+  - {name: Idun's Lake, levels: "37", dungeons: 1, quests: 0}
+  - {name: Western Gribade Highland, levels: "37", dungeons: 4, quests: 1}
+  - {name: Eastern Gribade Highland, levels: "37–40", dungeons: 4, quests: 1}
+  - {name: Southern Gribade Highland, levels: "40", dungeons: 0, quests: 1}
+  - {name: Black Claw Village, levels: "41–45", dungeons: 4, quests: 2}
+  - {name: Lagta Fortress, levels: "43", dungeons: 1, quests: 0}
+  - {name: Impetusium Square, levels: "44–45", dungeons: 2, quests: 3}
+  - {name: Safe Haven (hub), levels: "10–45", dungeons: 0, quests: 3}
+  - {name: Quai Campsite, levels: "12–45", dungeons: 0, quests: 2}
+  - {name: Steel Hammer Merchants HQ, levels: "35–45", dungeons: 0, quests: 2}
+
+elyos: # Verteron
+  - {name: Dawn Legion Base, levels: "10–16", dungeons: 0, quests: 5}
+  - {name: Western Cantas Valley, levels: "11–12", dungeons: 2, quests: 3}
+  - {name: Eastern Cantas Valley, levels: "13", dungeons: 3, quests: 2}
+  - {name: Ellun River Marsh, levels: "14–16", dungeons: 4, quests: 2}
+  - {name: Ellun River Meadow, levels: "18", dungeons: 0, quests: 0}
+  - {name: Ellun River Midstream, levels: "18–30", dungeons: 7, quests: 5}
+  - {name: Verteron Fortress Ruins, levels: "19–21", dungeons: 6, quests: 1}
+  - {name: Pilgrim's Ridge, levels: "22", dungeons: 1, quests: 5}
+  - {name: Northern Tolbas Forest, levels: "24", dungeons: 0, quests: 0}
+  - {name: Southern Tolbas Forest, levels: "24–25", dungeons: 5, quests: 2}
+  - {name: Wind Breeze Merchants HQ, levels: "24–30", dungeons: 0, quests: 3}
+  - {name: Aullaeu Village, levels: "26–30", dungeons: 4, quests: 4}
+  - {name: Eastern Tolbas Forest, levels: "26–30", dungeons: 2, quests: 2}
+  - {name: Forest of Exiles, levels: "29", dungeons: 2, quests: 1}
+  - {name: Western Altamia Highland, levels: "32", dungeons: 2, quests: 1}
+  - {name: Rock Tomb Hill, levels: "32", dungeons: 0, quests: 0}
+  - {name: Zumion Village, levels: "32–45", dungeons: 0, quests: 4}
+  - {name: Altamia Canyon, levels: "33–37", dungeons: 5, quests: 1}
+  - {name: Destroyed Temple Site, levels: "34–35", dungeons: 1, quests: 1}
+  - {name: Ancient Zumion Temple Site, levels: "35–37", dungeons: 0, quests: 0}
+  - {name: Contaminated Sanctum, levels: "36–37", dungeons: 1, quests: 3}
+  - {name: Southern Altamia Highland, levels: "37–45", dungeons: 2, quests: 4}
+  - {name: Drana Plantation, levels: "40–42", dungeons: 5, quests: 2}
+  - {name: Scarlet Forest, levels: "41", dungeons: 3, quests: 2}
+  - {name: Nahid Brigade Fortress, levels: "42", dungeons: 0, quests: 0}
+  - {name: Garden of the Illusion God, levels: "44–45", dungeons: 1, quests: 4}
+  - {name: Kraka Footpath, levels: "45", dungeons: 3, quests: 1}
