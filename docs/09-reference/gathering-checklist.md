@@ -1,5 +1,6 @@
 ---
 updated: 2026-10-10
+description: "A checklist to get started with gathering."
 sidebar_position: 2
 ---
 # Gathering Checklist

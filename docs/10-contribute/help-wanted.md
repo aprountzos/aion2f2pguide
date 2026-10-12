@@ -1,5 +1,6 @@
 ---
 updated: 2026-10-11
+description: "Open questions and gaps in the guide that you can help answer."
 sidebar_position: 5
 comments: false
 staleness: false
@@ -7,7 +8,7 @@ corrections: false
 ---
 # Help Wanted
 
-These are the open questions and gaps in the guide, taken from the known conflicts listed on [Sources](../09-reference/sources.md). If you can answer one **from the game**, that is a huge help. Open a [correction issue](https://github.com/aprountzos/aion2f2pguide/issues/new?template=data-correction.yml) or send a pull request ([Make Your First Pull Request](./make-your-first-pull-request.md)).
+These are the open questions and gaps in the guide, taken from the known conflicts listed on [Sources](../09-reference/sources.md). If you can answer one **from the game**, that is a huge help. Open a [correction issue](https://github.com/your-github-username/your-repo-name/issues/new?template=data-correction.yml) or send a pull request ([Make Your First Pull Request](./make-your-first-pull-request.md)).
 
 ## Things to verify in game
 | Question | Where it matters |

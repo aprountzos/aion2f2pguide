@@ -1,5 +1,6 @@
 ---
 updated: 2026-10-10
+description: "Build a new interactive widget for the site."
 sidebar_position: 8
 comments: false
 staleness: false

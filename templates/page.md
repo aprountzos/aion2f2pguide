@@ -1,5 +1,6 @@
 ---
 updated: {{DATE}}
+description: One sentence about this page. It is shown on the section page and in search results.
 sidebar_position: {{POSITION}}
 ---
 # {{TITLE}}

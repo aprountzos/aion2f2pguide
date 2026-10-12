@@ -1,5 +1,6 @@
 ---
 updated: 2026-10-10
+description: "Ways to earn Kina at each level, as far as the sources give numbers."
 sidebar_position: 2
 ---
 # Making Kina by Level

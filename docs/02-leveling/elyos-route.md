@@ -1,5 +1,6 @@
 ---
 updated: 2026-10-10
+description: "Zones, level ranges and key points for leveling as an Elyos."
 sidebar_label: Elyos Route
 sidebar_position: 3
 ---

@@ -1,8 +1,20 @@
 # Changelog
 
-Every published version of the guide and the site. The format follows [Keep a Changelog](https://keepachangelog.com), and versions follow [Semantic Versioning](https://semver.org) as explained in [RELEASING.md](RELEASING.md).
+Every published version of the guide and the site. The format follows [Keep a Changelog](https://keepachangelog.com), and versions follow [Semantic Versioning](https://semver.org).
 
 ## [Unreleased]
+
+## [0.1.3] - 2026-10-12
+
+Data checked: 2026-10-10
+
+### Added
+
+- Custom section pages with page descriptions (#5)
+
+### Maintenance
+
+- Remove links to maintainer-only guides (#6)
 
 ## [0.1.2] - 2026-10-12
 
@@ -63,7 +75,8 @@ First version.
 - Questions page: a blog-style list of answered questions with search and topics, and a discussion at the bottom where visitors ask new questions and others answer.
 - Pull request report: a bot comment with the changed pages and data rows, the pages that show that data and every problem with file and line. `npm run pr-report` runs it locally.
 
-[Unreleased]: https://github.com/aprountzos/aion2f2pguide/compare/v0.1.2...HEAD
+[Unreleased]: https://github.com/aprountzos/aion2f2pguide/compare/v0.1.3...HEAD
+[0.1.3]: https://github.com/aprountzos/aion2f2pguide/compare/v0.1.2...v0.1.3
 [0.1.2]: https://github.com/aprountzos/aion2f2pguide/compare/v0.1.0...v0.1.2
 [0.1.1]: https://github.com/aprountzos/aion2f2pguide/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/aprountzos/aion2f2pguide/compare/v0.0.1...v0.1.0

@@ -1,5 +1,6 @@
 ---
 updated: 2026-10-10
+description: "Odyle, the gathered crafting material, and how it differs from Odyle Energy."
 sidebar_position: 4
 ---
 # Odyle

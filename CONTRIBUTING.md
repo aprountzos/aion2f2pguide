@@ -18,7 +18,7 @@ By taking part you agree to follow the [Code of Conduct](CODE_OF_CONDUCT.md).
 
 ## Where your pull request goes
 
-**Always open it against the `dev` branch**, not `main`. `main` is the live site and only receives numbered releases. Accepted changes collect on `dev` and are published together as the next version (see [RELEASING.md](RELEASING.md) and the [Branches and Versions](https://aprountzos.github.io/aion2f2pguide/contribute/branches-and-versions) page). You never need to change the version number or the changelog.
+**Always open it against the `dev` branch**, not `main`. `main` is the live site and only receives numbered releases. Accepted changes collect on `dev` and are published together as the next version (see the [Branches and Versions](https://aprountzos.github.io/aion2f2pguide/contribute/branches-and-versions) page). You never need to change the version number or the changelog.
 
 ## Ground rules
 

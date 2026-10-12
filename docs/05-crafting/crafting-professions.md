@@ -1,5 +1,6 @@
 ---
 updated: 2026-10-10
+description: "The five crafting professions, where to craft and how mastery works."
 sidebar_position: 1
 ---
 # Crafting Professions

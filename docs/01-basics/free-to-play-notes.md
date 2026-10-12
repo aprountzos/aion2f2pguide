@@ -1,5 +1,6 @@
 ---
 updated: 2026-10-10
+description: "How the free-to-play model affects farming, crafting and the Market."
 sidebar_position: 2
 ---
 # Free-to-Play Notes

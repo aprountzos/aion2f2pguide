@@ -1,5 +1,6 @@
 ---
 updated: 2026-10-10
+description: "What resets daily and weekly, and the caps to keep track of (mostly level 45 content)."
 sidebar_position: 3
 ---
 # Daily and Weekly Checklist

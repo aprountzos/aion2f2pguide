@@ -1,5 +1,6 @@
 ---
 updated: 2026-10-10
+description: "How Kina and the Market work, and the other currencies."
 sidebar_position: 1
 ---
 # Kina and Market
