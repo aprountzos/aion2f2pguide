@@ -1,0 +1,54 @@
+name: Link check
+
+# Once a week, checks every link on the built site (including the external sources) and opens an
+# issue if some are broken. Pull requests are not blocked by this, external sites are sometimes down.
+
+on:
+  schedule:
+    - cron: '0 6 * * 1' # Mondays 06:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Build the site
+        env:
+          BASE_URL: /
+        run: npm run build
+
+      - name: Check links
+        id: lychee
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --root-dir "${{ github.workspace }}/build"
+            --no-progress
+            --max-retries 2
+            --accept "200..=299,403,429"
+            --exclude "github\\.com/.*/(edit|issues/new|blob|graphs)"
+            --exclude "^https://aprountzos"
+            "./build/**/*.html"
+          output: ./lychee/report.md
+          fail: false
+
+      - name: Open an issue if links are broken
+        if: steps.lychee.outputs.exit_code != 0
+        uses: peter-evans/create-issue-from-file@v6
+        with:
+          title: Broken links report
+          content-filepath: ./lychee/report.md
+          labels: broken-links

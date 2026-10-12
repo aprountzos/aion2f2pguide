@@ -1,0 +1,50 @@
+name: Report a wrong or outdated number
+description: A level, node count, drop rate, location or other fact on the guide is wrong or changed in a patch.
+title: 'Correction: '
+labels: [data-correction]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping keep the guide accurate. Please include **where you got the correct value**.
+        You can also fix it yourself: click **Edit this page** at the bottom of the page on the site.
+  - type: input
+    id: page
+    attributes:
+      label: Which page?
+      description: The page address or title, for example `/leveling/level-finder`.
+      placeholder: /leveling/level-finder
+    validations:
+      required: true
+  - type: textarea
+    id: wrong
+    attributes:
+      label: What is wrong?
+      description: Quote the line or table row, and say what is incorrect about it.
+    validations:
+      required: true
+  - type: textarea
+    id: correct
+    attributes:
+      label: What is the correct information?
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: Source
+      description: A link, or "checked in game on YYYY-MM-DD". In-game checks are the best source.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Game version or patch date
+      description: Optional. Helpful when the value changed in a recent patch.
+      placeholder: 'Patch of 2026-10-07'
+  - type: checkboxes
+    id: help
+    attributes:
+      label: Can you help more?
+      options:
+        - label: I am willing to open a pull request for this fix if guided.

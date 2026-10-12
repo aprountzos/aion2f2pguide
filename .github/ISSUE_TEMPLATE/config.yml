@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: How to contribute
+    url: https://aprountzos.github.io/aion2f2pguide/contribute
+    about: Read this first if you want to fix a page or add one yourself. No coding needed.

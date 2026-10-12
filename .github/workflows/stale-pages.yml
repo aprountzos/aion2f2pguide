@@ -1,0 +1,50 @@
+name: Stale pages
+
+# Every Monday: lists the pages that were not verified for a while (staleDays in site.config.json)
+# The list is kept in ONE open issue
+# labelled "stale-data", which is updated each week and closed when nothing is left.
+# You can also run it by hand from the Actions tab.
+
+on:
+  schedule:
+    - cron: '0 7 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v7
+        with:
+          ref: dev # the pages are edited on dev
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      - name: Make the report
+        id: report
+        run: node scripts/stale-pages.mjs --out stale-report.md
+
+      - name: Create, update or close the issue
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COUNT: ${{ steps.report.outputs.count }}
+        run: |
+          gh label create stale-data --color FBCA04 --description "Pages to re-verify" 2>/dev/null || true
+          NUMBER=$(gh issue list --label stale-data --state open --json number --jq '.[0].number // empty')
+          if [ "$COUNT" = "0" ]; then
+            if [ -n "$NUMBER" ]; then gh issue close "$NUMBER" --comment "Nothing left to verify. Closing."; fi
+            exit 0
+          fi
+          if [ -n "$NUMBER" ]; then
+            gh issue edit "$NUMBER" --body-file stale-report.md
+          else
+            gh issue create --title "Pages to verify" --label stale-data --body-file stale-report.md
+          fi

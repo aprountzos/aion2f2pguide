@@ -1,0 +1,35 @@
+name: Suggest new content
+description: A topic, zone, table or page you would like the guide to cover.
+title: 'Content: '
+labels: [new-content]
+body:
+  - type: input
+    id: topic
+    attributes:
+      label: Topic
+      placeholder: 'Pet souls, Eltnen zone levels, Alchemy recipes...'
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why would it help players?
+    validations:
+      required: true
+  - type: input
+    id: levels
+    attributes:
+      label: Level range
+      description: If it applies to certain levels.
+      placeholder: '10–45'
+  - type: textarea
+    id: sources
+    attributes:
+      label: Sources you know of
+      description: Links, or what you verified in game. Please avoid gold-selling or boosting sites.
+  - type: checkboxes
+    id: help
+    attributes:
+      label: Can you help write it?
+      options:
+        - label: I would like to write this page myself (see the Add a New Page guide).

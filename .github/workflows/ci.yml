@@ -1,0 +1,100 @@
+name: CI
+
+# Runs on every pull request. A pull request can only be merged when the "build" job (and, for
+# pull requests into main, the "policy" job) is green. See MAINTAINING.md, "Protect the branches".
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the pull request
+        uses: actions/checkout@v7
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint the pages
+        # Frontmatter, links, tables, admonitions, components. Prints file:line for every problem.
+        run: npm run lint
+
+      - name: Build the site
+        # Fails on any broken link. BASE_URL=/ so the downloaded preview works from a local server.
+        env:
+          BASE_URL: /
+        run: npm run build
+
+      - name: Upload a preview of the site
+        uses: actions/upload-artifact@v7
+        with:
+          name: site-preview
+          path: build
+          retention-days: 7
+
+  # Branch rules. Pull requests into main must be releases coming from dev (or a hotfix branch).
+  # Pull requests into dev should have a prefixed title (advisory only, a maintainer can fix it when merging).
+  policy:
+    name: policy
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: Check out the pull request
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0 # needs main and the tags
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      - name: Only dev or hotfix branches can go into main
+        if: github.base_ref == 'main'
+        env:
+          HEAD_REF: ${{ github.head_ref }}
+          FROM_THIS_REPO: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
+        run: |
+          if [ "$FROM_THIS_REPO" != "true" ]; then
+            echo "::error::Pull requests into main must come from a branch of this repository (dev or hotfix/...), not from a fork. Open it against dev instead."
+            exit 1
+          fi
+          case "$HEAD_REF" in
+            dev|hotfix/*) echo "OK: ${HEAD_REF} -> main" ;;
+            *)
+              echo "::error::Pull requests into main must come from the dev branch (or hotfix/...). Open this pull request against dev instead."
+              exit 1 ;;
+          esac
+
+      - name: Release pull requests need a new version and a changelog entry
+        if: github.base_ref == 'main'
+        run: |
+          git fetch origin main
+          node scripts/check-release.mjs --base origin/main
+
+      - name: Check the title of pull requests into dev
+        if: github.base_ref == 'dev'
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          if echo "$PR_TITLE" | grep -Eq '^(add|feat|data|fix|docs|chore|ci|deps|refactor|style|build|release)(\([^)]+\))?!?: .+'; then
+            echo "OK: $PR_TITLE"
+          else
+            echo "::warning::Please start the pull request title with data:, add:, fix:, docs: or feat: (for example 'data: fix Basfelt Ruins Ruby count'). The title becomes the changelog line."
+          fi

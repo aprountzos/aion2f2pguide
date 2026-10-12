@@ -1,0 +1,72 @@
+name: PR report
+
+# Posts a "content report" on every pull request that touches pages, data or the site code:
+# which files and data rows changed, which pages show that data, and every problem with file and line.
+# It only reports. The "build" check in ci.yml is what blocks a merge.
+#
+#   - Problems also show as red/yellow marks on the changed lines ("Files changed" tab).
+#   - Pull requests from a fork cannot write comments (GitHub gives them a read-only token), so for
+#     them the report is in the "Summary" of this workflow run instead.
+# The report script is `scripts/pr-report.mjs`. Run the same thing locally with: npm run pr-report -- --base dev
+
+on:
+  pull_request:
+    paths:
+      - 'docs/**'
+      - 'data/**'
+      - 'src/**'
+      - 'scripts/**'
+      - 'site.config.json'
+
+permissions:
+  contents: read
+  pull-requests: write # only used for the comment, and only for pull requests from this repository
+
+concurrency:
+  group: pr-report-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  report:
+    name: report
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the pull request
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0 # the report compares with the base branch
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Make the report
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          node scripts/pr-report.mjs --base "$BASE_SHA" --head "$HEAD_SHA" --out pr-report.md --annotations
+          cat pr-report.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Post or update the comment
+        # Same-repository pull requests only. Dependabot pull requests also get a read-only token, so a
+        # failure here must not turn the run red.
+        if: github.event.pull_request.head.repo.full_name == github.repository
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          PR: ${{ github.event.pull_request.number }}
+        run: |
+          id=$(gh api "repos/$REPO/issues/$PR/comments" --paginate \
+            --jq '.[] | select(.user.login == "github-actions[bot]") | select(.body | contains("<!-- pr-report -->")) | .id' | head -n 1)
+          if [ -n "$id" ]; then
+            gh api -X PATCH "repos/$REPO/issues/comments/$id" -F body=@pr-report.md > /dev/null
+          else
+            gh api -X POST "repos/$REPO/issues/$PR/comments" -F body=@pr-report.md > /dev/null
+          fi

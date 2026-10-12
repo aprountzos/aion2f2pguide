@@ -1,0 +1,3 @@
+# Pull requests automatically request a review from these people.
+# Format: <pattern> <@user or @org/team>
+*  @aprountzos
