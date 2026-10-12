@@ -1,5 +1,6 @@
 ---
 updated: 2026-10-10
+description: "Where to find Orichalcum ore and what one extraction gives."
 sidebar_position: 1
 ---
 # Ore — Orichalcum

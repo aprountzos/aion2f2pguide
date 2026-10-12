@@ -1,5 +1,6 @@
 ---
 updated: 2026-10-10
+description: "How gathering works: Essence Extraction, proficiency and the promotion quest."
 sidebar_position: 1
 ---
 # Gathering Overview

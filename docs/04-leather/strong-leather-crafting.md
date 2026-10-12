@@ -1,5 +1,6 @@
 ---
 updated: 2026-10-10
+description: "Making Strong Leather from Raw Leather with Armorsmithing, and what it is used for."
 sidebar_position: 3
 ---
 # Strong Leather Crafting

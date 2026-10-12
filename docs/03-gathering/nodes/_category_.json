@@ -2,9 +2,11 @@
   "label": "Nodes",
   "position": 50,
   "collapsed": true,
+  "description": "Node counts by zone for ore, gems, logs, Odyle, herbs and cooking ingredients.",
   "link": {
     "type": "generated-index",
     "title": "Nodes",
-    "slug": "/category/gathering/nodes"
+    "slug": "/category/gathering/nodes",
+    "description": "Node counts by zone for ore, gems, logs, Odyle, herbs and cooking ingredients."
   }
 }

@@ -80,6 +80,9 @@ function lintPage({abs, rel, parts}) {
     for (const flag of ['comments', 'staleness', 'corrections', 'qa', 'landing']) {
       if (data[flag] !== undefined && !/^(true|false)$/.test(data[flag])) err(file, 1, `"${flag}" must be true or false`);
     }
+    if (parts.length > 0 && !data.description) {
+      warn(file, 1, 'add a one-sentence "description:" to the frontmatter. It is shown on the section page and in search results');
+    }
     if (!/^-?\d+$/.test(data.sidebar_position || '')) {
       err(file, 1, 'frontmatter needs an integer "sidebar_position" (order inside its folder)');
     } else if (!isHome) {

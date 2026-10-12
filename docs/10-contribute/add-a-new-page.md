@@ -1,5 +1,6 @@
 ---
 updated: 2026-10-11
+description: "Create a new page and put it in the right place."
 sidebar_position: 4
 comments: false
 staleness: false

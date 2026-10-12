@@ -1,5 +1,6 @@
 ---
 updated: 2026-10-10
+description: "Herb and cooking ingredient node counts by zone."
 sidebar_position: 5
 ---
 # Herbs and Cooking Ingredients

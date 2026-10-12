@@ -1,5 +1,6 @@
 ---
 updated: 2026-10-10
+description: "What changes at the level 45 cap and where to spend your time."
 sidebar_position: 1
 ---
 # After Level 45

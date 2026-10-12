@@ -1,5 +1,6 @@
 ---
 updated: 2026-10-10
+description: "Licenses, privacy, data sources and credits."
 sidebar_position: 6
 comments: false
 staleness: false
