@@ -1,0 +1,6 @@
+{
+  "description": "__DESCRIPTION__",
+  "props": {
+    "title": {"type": "string", "required": false}
+  }
+}
