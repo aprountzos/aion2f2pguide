@@ -4,6 +4,18 @@ Every published version of the guide and the site. The format follows [Keep a Ch
 
 ## [Unreleased]
 
+## [0.1.2] - 2026-10-12
+
+Data checked: 2026-10-10
+
+### Added
+
+- New landing page and sidebar (#3)
+
+### Maintenance
+
+- Release script can push and open the release pull request
+
 ## [0.1.1] - 2026-10-12
 
 Data checked: 2026-10-10
@@ -51,7 +63,8 @@ First version.
 - Questions page: a blog-style list of answered questions with search and topics, and a discussion at the bottom where visitors ask new questions and others answer.
 - Pull request report: a bot comment with the changed pages and data rows, the pages that show that data and every problem with file and line. `npm run pr-report` runs it locally.
 
-[Unreleased]: https://github.com/aprountzos/aion2f2pguide/compare/v0.1.1...HEAD
+[Unreleased]: https://github.com/aprountzos/aion2f2pguide/compare/v0.1.2...HEAD
+[0.1.2]: https://github.com/aprountzos/aion2f2pguide/compare/v0.1.0...v0.1.2
 [0.1.1]: https://github.com/aprountzos/aion2f2pguide/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/aprountzos/aion2f2pguide/compare/v0.0.1...v0.1.0
 [0.0.1]: https://github.com/aprountzos/aion2f2pguide/releases/tag/v0.0.1
