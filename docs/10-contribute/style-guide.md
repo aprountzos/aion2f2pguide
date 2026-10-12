@@ -1,5 +1,6 @@
 ---
 updated: 2026-10-10
+description: "Short rules so every page reads the same and every number can be checked."
 sidebar_position: 3
 comments: false
 staleness: false
@@ -16,11 +17,12 @@ Short rules so every page reads the same and every number can be checked.
 4. **Show the source.** Every number can be traced through the [Sources](../09-reference/sources.md) page.
 
 ## Page structure
-Every page is a Markdown file in `docs/` with frontmatter, one `#` title, then `##` sections. Use `.md`. Only a page that shows a component (for example the Level Finder) is `.mdx`, see [Add a React Component](./add-a-react-component.md).
+Every page is a Markdown file in `docs/` with frontmatter (including a one-sentence `description:`, which is shown on the section page), one `#` title, then `##` sections. Use `.md`. Only a page that shows a component (for example the Level Finder) is `.mdx`, see [Add a React Component](./add-a-react-component.md).
 
 ```markdown
 ---
 updated: 2026-10-10
+description: One sentence about the page, shown on the section page and in search results.
 sidebar_position: 3
 ---
 # Page Title

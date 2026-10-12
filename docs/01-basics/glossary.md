@@ -1,5 +1,6 @@
 ---
 updated: 2026-10-10
+description: "Plain-English meanings of Aion 2 terms: Kina vs Quna, Odyle vs Odyle Energy, Daeva, Stigma and more."
 sidebar_position: 1
 ---
 # Glossary

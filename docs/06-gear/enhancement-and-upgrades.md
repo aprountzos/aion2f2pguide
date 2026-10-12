@@ -1,5 +1,6 @@
 ---
 updated: 2026-10-10
+description: "How enhancement and upgrades work, and the golden rule while leveling."
 sidebar_position: 1
 ---
 # Enhancement and Upgrades

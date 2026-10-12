@@ -1,5 +1,6 @@
 ---
 updated: 2026-10-10
+description: "What happens when you are over- or under-leveled for a zone, and what the sources say."
 sidebar_label: Level Difference
 sidebar_position: 5
 ---

@@ -1,5 +1,6 @@
 ---
 updated: 2026-10-10
+description: "Where your change goes after you submit it and how it reaches the live site."
 sidebar_position: 7
 comments: false
 staleness: false

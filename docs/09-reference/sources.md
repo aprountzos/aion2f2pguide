@@ -1,5 +1,6 @@
 ---
 updated: 2026-10-10
+description: "Where the numbers come from, and where the sources disagree."
 sidebar_position: 3
 ---
 # Sources

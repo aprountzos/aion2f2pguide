@@ -1,5 +1,6 @@
 ---
 updated: 2026-10-12
+description: "Answer a question from the Questions page."
 sidebar_position: 11
 comments: false
 staleness: false

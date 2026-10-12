@@ -1,5 +1,6 @@
 ---
 updated: 2026-10-10
+description: "Game patches that changed numbers in this guide, newest first."
 sidebar_position: 4
 ---
 # Patch History

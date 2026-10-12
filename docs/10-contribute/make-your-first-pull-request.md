@@ -1,5 +1,6 @@
 ---
 updated: 2026-10-10
+description: "Step by step on GitHub: propose a change to the guide."
 sidebar_position: 2
 comments: false
 staleness: false
@@ -37,15 +38,15 @@ To change your PR after review comments, open the **Files changed** tab, click t
 ### One-time setup
 You need a [GitHub](https://github.com) account, [Git](https://git-scm.com/downloads) and [Node.js](https://nodejs.org) version 20 or newer (22 recommended).
 
-1. **Fork** the repository: open https://github.com/aprountzos/aion2f2pguide and click **Fork** (top right), then **Create fork**.
+1. **Fork** the repository: open https://github.com/your-github-username/your-repo-name and click **Fork** (top right), then **Create fork**.
 2. **Clone** your fork (replace `<your-username>` with your GitHub name):
    ```bash
-   git clone https://github.com/<your-username>/aion2f2pguide.git
-   cd aion2f2pguide
+   git clone https://github.com/<your-username>/your-repo-name.git
+   cd your-repo-name
    ```
 3. Tell Git where the original repository is, so you can stay up to date:
    ```bash
-   git remote add upstream https://github.com/aprountzos/aion2f2pguide.git
+   git remote add upstream https://github.com/your-github-username/your-repo-name.git
    ```
 4. Install the dependencies:
    ```bash

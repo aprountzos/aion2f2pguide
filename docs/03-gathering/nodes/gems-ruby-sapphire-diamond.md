@@ -1,5 +1,6 @@
 ---
 updated: 2026-10-10
+description: "Ruby, Sapphire and Diamond node counts across the four zones."
 sidebar_position: 2
 ---
 # Gems — Ruby, Sapphire, Diamond

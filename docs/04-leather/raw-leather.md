@@ -1,5 +1,6 @@
 ---
 updated: 2026-10-10
+description: "Raw Leather drop rates and the monsters that drop it, including the Oct 7 increase."
 sidebar_position: 1
 ---
 # Raw Leather

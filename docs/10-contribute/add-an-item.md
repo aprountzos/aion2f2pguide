@@ -1,5 +1,6 @@
 ---
 updated: 2026-10-12
+description: "Add an item to the Item Database with a few lines of text."
 sidebar_position: 10
 comments: false
 staleness: false

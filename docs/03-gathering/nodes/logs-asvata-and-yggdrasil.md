@@ -1,5 +1,6 @@
 ---
 updated: 2026-10-10
+description: "Asvata and Yggdrasil logs: where they grow and what they are used for."
 sidebar_position: 3
 ---
 # Logs — Asvata and Yggdrasil
