@@ -17,6 +17,8 @@
   --ifm-color-primary-lighter: #4284c8;
   --ifm-color-primary-lightest: #63a0dc;
   --ifm-code-font-size: 95%;
+  --ifm-line-height-base: 1.7;
+  --ifm-table-stripe-background: transparent;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
@@ -51,15 +53,6 @@
   vertical-align: top;
 }
 
-/* Keep long reference tables readable */
-.markdown table tr:nth-child(even) {
-  background-color: var(--ifm-table-stripe-background);
-}
-
-/* Tighter admonitions */
-.theme-admonition {
-  margin-bottom: 1.25rem;
-}
 
 /* ---------------------------------------------------------------- type */
 .markdown h1,
@@ -175,4 +168,86 @@ html.landing-page .landing h1 {
 
 .theme-doc-sidebar-item-link-level-1 > .menu__link--active::before {
   content: none;
+}
+
+/* ---------------------------------------------------------------- content pages */
+
+/* more room above each section, so a long page has a visible rhythm */
+.markdown > h2 {
+  margin-top: 2.75rem;
+}
+
+.markdown > h3 {
+  margin-top: 1.9rem;
+}
+
+/* tables: light rules, quiet header, a row highlight under the pointer */
+.markdown table {
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 8px;
+  font-size: 0.93rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.markdown table th,
+.markdown table td {
+  border: 0;
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+  padding: 0.55rem 0.8rem;
+}
+
+.markdown table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.markdown table thead tr {
+  background: var(--ifm-color-emphasis-100);
+}
+
+.markdown table th {
+  font-size: 0.86rem;
+  font-weight: 600;
+  text-align: left;
+  color: var(--ifm-color-emphasis-800);
+}
+
+.markdown table tbody tr:hover {
+  background: var(--ifm-hover-overlay);
+}
+
+/* callouts: a colored bar and a soft fill instead of a boxed frame; sentence case titles */
+.theme-admonition {
+  --ifm-alert-border-width: 0;
+  --ifm-alert-border-left-width: 4px;
+  --ifm-alert-shadow: none;
+  margin-bottom: 1.4rem;
+  padding: 0.9rem 1.15rem;
+  border-radius: 6px;
+}
+
+.theme-admonition > div:first-child {
+  margin-bottom: 0.35rem;
+  font-size: 0.95rem;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* "On this page": quieter, the current section stands out */
+.table-of-contents {
+  font-size: 0.85rem;
+}
+
+.table-of-contents__link {
+  color: var(--ifm-color-emphasis-700);
+}
+
+.table-of-contents__link:hover,
+.table-of-contents__link--active {
+  color: var(--ifm-color-primary);
+}
+
+.table-of-contents__link--active {
+  font-weight: 600;
 }
