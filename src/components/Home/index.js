@@ -1,11 +1,12 @@
-import React, {useEffect, useMemo, useState} from 'react';
+import React, {useMemo} from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import data from '@site/src/generated/data.json';
 import sections from '@site/src/generated/sections.json';
 import {inline, plain} from '../inline';
-import {CAP, FACTIONS, GATHER_FROM, LEATHER_FROM, computeFinder, readSaved, saveChoice} from '../finder';
+import {CAP, FACTIONS, GATHER_FROM, LEATHER_FROM, computeFinder} from '../finder';
+import {useProfile} from '../profile';
 import styles from './styles.module.css';
 
 // The home page (docs/index.mdx). The top part is a one-sentence level finder: the answer changes
@@ -33,20 +34,11 @@ export default function Home() {
 
 function Hero() {
   const {siteConfig} = useDocusaurusContext();
-  const [faction, setFaction] = useState('elyos');
-  const [level, setLevel] = useState(10);
-
-  useEffect(() => {
-    const saved = readSaved();
-    if (saved && saved.faction) setFaction(saved.faction);
-    if (saved && saved.level) setLevel(saved.level);
-  }, []);
-  useEffect(() => {
-    saveChoice(faction, level);
-  }, [faction, level]);
+  const {faction, level, set} = useProfile();
+  const setFaction = (f) => set({faction: f});
 
   const r = useMemo(() => computeFinder(data, faction, level), [faction, level]);
-  const setLevelSafe = (v) => setLevel(Math.max(1, Math.min(CAP, Math.round(Number(v)) || 1)));
+  const setLevelSafe = (v) => set({level: v});
 
   const zones = (r.here.length ? r.here : r.near).slice(0, 2);
   const nodeTypes = data.nodeTypes.filter((t) => r.best[t]).slice(0, 4);

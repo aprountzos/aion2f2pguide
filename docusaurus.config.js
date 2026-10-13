@@ -107,6 +107,7 @@ const config = {
           {to: '/leather/leather-farming-by-level', label: 'Leather', position: 'left'},
           {to: '/reference/item-database', label: 'Items', position: 'left'},
           {to: '/questions', label: 'Questions', position: 'left'},
+          {type: 'custom-profile', position: 'right'},
           {to: '/contribute', label: 'Contribute', position: 'right'},
           {href: meta.repoUrl, label: 'GitHub', position: 'right'},
         ],

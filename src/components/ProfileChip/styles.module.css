@@ -1,0 +1,155 @@
+.root {
+  position: relative;
+  margin-right: 0.25rem;
+}
+
+.chip {
+  appearance: none;
+  border: 1px solid var(--ifm-color-emphasis-400);
+  background: transparent;
+  color: var(--ifm-navbar-link-color);
+  border-radius: 999px;
+  padding: 0.25rem 0.85rem;
+  font: inherit;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.ready {
+  opacity: 1;
+}
+
+.chip:hover {
+  border-color: var(--ifm-color-primary);
+  color: var(--ifm-color-primary);
+}
+
+.set {
+  border-color: var(--ifm-color-primary);
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+}
+
+.chip:focus-visible,
+.pill:focus-visible,
+.number:focus-visible,
+.slider:focus-visible,
+.clear:focus-visible {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 2px;
+}
+
+.panel {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 0.6rem);
+  z-index: 10;
+  width: 17rem;
+  padding: 1rem 1.1rem 0.9rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 10px;
+  background: var(--ifm-background-surface-color);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.controls {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.group {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.pill {
+  flex: 1;
+  appearance: none;
+  border: 1px solid var(--ifm-color-emphasis-400);
+  background: transparent;
+  color: var(--ifm-font-color-base);
+  border-radius: 999px;
+  padding: 0.3rem 0.5rem;
+  font: inherit;
+  cursor: pointer;
+}
+
+.pill.on {
+  background: var(--ifm-color-primary);
+  border-color: var(--ifm-color-primary);
+  color: #fff;
+}
+
+[data-theme='dark'] .pill.on {
+  color: #0a1322;
+}
+
+.levelRow {
+  display: grid;
+  grid-template-columns: auto 4.2rem 1fr;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0;
+}
+
+.number {
+  width: 100%;
+  padding: 0.25rem 0.4rem;
+  border: 1px solid var(--ifm-color-emphasis-400);
+  border-radius: 6px;
+  background: var(--ifm-background-color);
+  color: inherit;
+  font: inherit;
+}
+
+.slider {
+  width: 100%;
+  min-width: 0;
+  accent-color: var(--ifm-color-primary);
+}
+
+.hint {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.4;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+.clear {
+  appearance: none;
+  border: 0;
+  background: none;
+  padding: 0;
+  font: inherit;
+  color: var(--ifm-color-emphasis-700);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.mobile {
+  list-style: none;
+  padding: 0.75rem 0.5rem 0.25rem;
+}
+
+.mobileTitle {
+  margin: 0 0 0.6rem;
+  font-family: var(--aion-display);
+  font-size: 1.05rem;
+}
+
+/* on phones the chip lives in the menu (the navbar has no room for it) */
+@media (max-width: 996px) {
+  .root {
+    display: none;
+  }
+}
