@@ -1,0 +1,66 @@
+# The playable classes, in the order they appear in the guide.
+# id:      lowercase name, used as the file name of the class guide (docs/11-classes/<id>.md).
+# name:    the name shown in the game (Global client).
+# role:    what the class does in a group, a few words.
+# weapon:  the weapon it uses.
+# note:    optional, one short sentence (for example an alternative name).
+# source:  where the information comes from, as a markdown link.
+# checked: the date you last checked the row, "YYYY-MM-DD".
+# A class guide is a page written with the template (see "Write a class guide" in the Contribute section).
+
+- id: gladiator
+  name: Gladiator
+  role: Melee damage and frontline
+  weapon: Greatsword
+  source: "[metabot.gg class list](https://metabot.gg/en/aion-2/classes)"
+  checked: "2026-10-13"
+
+- id: templar
+  name: Templar
+  role: Tank
+  weapon: Longsword
+  source: "[metabot.gg class list](https://metabot.gg/en/aion-2/classes)"
+  checked: "2026-10-13"
+
+- id: assassin
+  name: Assassin
+  role: Melee burst damage
+  weapon: Dagger
+  source: "[metabot.gg class list](https://metabot.gg/en/aion-2/classes)"
+  checked: "2026-10-13"
+
+- id: ranger
+  name: Ranger
+  role: Ranged physical damage
+  weapon: Bow
+  source: "[metabot.gg class list](https://metabot.gg/en/aion-2/classes)"
+  checked: "2026-10-13"
+
+- id: sorcerer
+  name: Sorcerer
+  role: Ranged magic damage
+  weapon: Spellbook
+  source: "[metabot.gg class list](https://metabot.gg/en/aion-2/classes)"
+  checked: "2026-10-13"
+
+- id: spiritmaster
+  name: Spiritmaster
+  role: Ranged magic damage and spirit summons
+  weapon: Orb
+  note: Some sources and internal game data call it the Elementalist.
+  source: "[metabot.gg class list](https://metabot.gg/en/aion-2/classes)"
+  checked: "2026-10-13"
+
+- id: cleric
+  name: Cleric
+  role: Healer
+  weapon: Mace
+  source: "[metabot.gg class list](https://metabot.gg/en/aion-2/classes)"
+  checked: "2026-10-13"
+
+- id: chanter
+  name: Chanter
+  role: "Support: buffs and secondary healing"
+  weapon: Staff
+  source: "[metabot.gg class list](https://metabot.gg/en/aion-2/classes)"
+  checked: "2026-10-13"

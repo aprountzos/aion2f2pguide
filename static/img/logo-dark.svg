@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Rising steps with a diamond on top">
+  <path d="M8 56 V46 H20 V36 H32 V26 H44 V16 H56 V56 Z" fill="#6fb3ef" stroke="#6fb3ef" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M50 1 L56 7 L50 13 L44 7 Z" fill="#f2d48f"/>
+</svg>

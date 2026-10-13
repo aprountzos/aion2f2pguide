@@ -1,11 +1,13 @@
-import React, {useMemo, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import data from '@site/src/generated/data.json';
 import {inline, overlaps, plain} from '../inline';
+import {useProfile} from '../profile';
 import styles from './styles.module.css';
 
 // A sortable, filterable table. The rows come from data/*.yml (see scripts/lib/data.mjs).
 // Filters: free text, and "my level" (shows rows that overlap your level, with a margin).
+// "My level" starts from the visitor's saved level (see ../profile.js) and changing it saves it.
 
 const firstNumber = (s) => {
   const m = /-?\d+(?:\.\d+)?/.exec(plain(s));
@@ -24,7 +26,18 @@ export default function DataTable({id}) {
   const {siteConfig} = useDocusaurusContext();
   const table = data.tables.en[id];
   const [query, setQuery] = useState('');
-  const [level, setLevel] = useState('');
+  const profile = useProfile();
+  const [cleared, setCleared] = useState(false); // the visitor emptied the box: show every row
+  useEffect(() => setCleared(false), [profile.level]);
+  const level = cleared || !profile.hasLevel ? '' : String(profile.level);
+  const setLevel = (v) => {
+    if (v === '') setCleared(true);
+    else {
+      setCleared(false);
+      profile.set({level: v});
+    }
+  };
+  const mine = profile.hasFaction && id.endsWith(`-${profile.faction}`);
   const [margin, setMargin] = useState(3);
   const [sort, setSort] = useState({col: -1, dir: 1});
 
@@ -97,6 +110,7 @@ export default function DataTable({id}) {
             </label>
           </>
         )}
+        {mine && <span className={styles.mine}>Your faction</span>}
         {(filtered || sort.col >= 0) && (
           <button
             type="button"

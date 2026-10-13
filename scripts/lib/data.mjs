@@ -47,6 +47,9 @@ export const WIDGET_DATA = {
   LevelFinder: ['data/zones.yml', 'data/nodes.yml', 'data/leather.yml', 'data/milestones.yml'],
   ItemDatabase: ['data/items.yml'],
   Questions: ['data/questions.yml'],
+  ClassIndex: ['data/classes.yml'],
+  GuideBuilder: ['data/classes.yml'],
+  Checklist: ['data/resets.yml'],
   Home: ['data/zones.yml', 'data/nodes.yml', 'data/leather.yml', 'data/milestones.yml', 'data/patches.yml'],
 };
 
@@ -116,6 +119,8 @@ export function loadData(root) {
     patches: read('patches.yml'),
     items: read('items.yml'),
     questions: read('questions.yml'),
+    classes: read('classes.yml'),
+    resets: read('resets.yml'),
   };
   errors.push(...validate(data, pageIndex(path.join(root, 'docs'))));
   return {data, errors};
@@ -221,6 +226,44 @@ function validate(d, pages = new Map()) {
         if (!p || !isStr(p.title)) errs.push(`${at}: "title" is required`);
         if (!p || !Array.isArray(p.changes) || p.changes.length === 0) errs.push(`${at}: "changes" must be a list with at least one line`);
       });
+    }
+  }
+
+  // classes
+  if (d.classes !== null) {
+    if (!Array.isArray(d.classes)) errs.push('data/classes.yml: must be a list');
+    else {
+      const seen = new Set();
+      d.classes.forEach((c, i) => {
+        const at = `data/classes.yml [${i + 1}]`;
+        if (!c || typeof c !== 'object') return errs.push(`${at}: must be a class with id, name and role`);
+        for (const k of Object.keys(c)) if (!['id', 'name', 'role', 'weapon', 'note', 'source', 'checked'].includes(k)) errs.push(`${at}: unknown field "${k}". Allowed: id, name, role, weapon, note, source, checked`);
+        if (typeof c.id !== 'string' || !/^[a-z0-9]+(-[a-z0-9]+)*$/.test(c.id)) errs.push(`${at}: "id" must be lowercase letters, digits and hyphens, like "spiritmaster"`);
+        else if (seen.has(c.id)) errs.push(`${at}: id "${c.id}" is used twice`);
+        else seen.add(c.id);
+        if (!isStr(c.name)) errs.push(`${at}: "name" is required`);
+        if (!isStr(c.role)) errs.push(`${at}: "role" is required (a few words, like "Healer")`);
+        if (c.checked !== undefined && !/^\d{4}-\d{2}-\d{2}$/.test(String(c.checked))) errs.push(`${at}: "checked" must be written like "2026-10-13" (in quotes)`);
+      });
+    }
+  }
+
+  // resets
+  if (d.resets !== null) {
+    const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    if (!d.resets || typeof d.resets !== 'object' || Array.isArray(d.resets)) errs.push('data/resets.yml: needs "weekly" and "daily"');
+    else {
+      for (const kind of ['weekly', 'daily']) {
+        const r = d.resets[kind];
+        const at = `data/resets.yml (${kind})`;
+        if (!r || typeof r !== 'object') {
+          errs.push(`${at}: missing`);
+          continue;
+        }
+        if (r.hour !== null && !(Number.isInteger(r.hour) && r.hour >= 0 && r.hour <= 23)) errs.push(`${at}: "hour" must be 0 to 23, or empty when unknown`);
+        if (r.utc_offset !== null && !(typeof r.utc_offset === 'number' && r.utc_offset >= -12 && r.utc_offset <= 14)) errs.push(`${at}: "utc_offset" must be a number from -12 to 14 (hours from UTC), or empty when unknown`);
+        if (kind === 'weekly' && !days.includes(r.day)) errs.push(`${at}: "day" must be an English weekday, like Wednesday`);
+      }
     }
   }
 
@@ -519,4 +562,13 @@ export function updateBlocks(text, data, lang = 'en', linkTo = null) {
     }),
   );
   return {text: out, ids, unknown};
+}
+
+/** The class list for <ClassIndex />: each class with the address of its guide (docs/11-classes/<id>.md) if it exists. */
+export function buildClasses(data, pages) {
+  return (data.classes || []).map((c) => {
+    const page = pages.get(c.id);
+    const guide = page && page.rel.startsWith('11-classes/') ? page.url : null;
+    return {id: c.id, name: c.name, role: c.role, weapon: c.weapon || '', note: c.note || '', source: c.source || '', guide};
+  });
 }

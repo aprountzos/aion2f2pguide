@@ -1,0 +1,36 @@
+---
+updated: 2026-10-13
+description: "Write a guide for one class with a form. No coding needed."
+sidebar_position: 9
+comments: false
+staleness: false
+corrections: false
+---
+# Write a Class Guide
+
+Fill in the form and the page writes the guide for you, using the class guide template. When you are done, one button opens GitHub with your guide ready to send. You need a free [GitHub](https://github.com) account.
+
+## Before you start
+- **Only write what you know.** A short guide that you checked in game is worth more than a long one copied from somewhere. Leave a section empty if you have nothing to say; it will not appear on the page.
+- **Say where it comes from.** Every guide needs at least one source: a link and the date you checked it, or "tested in game on 2026-10-13".
+- **Your own words.** Facts (levels, skill names, numbers) are fine. Do not paste text from other sites. See the [Style Guide](./style-guide.md).
+- **One guide per class.** If the class already has a guide, improve it with **Edit this page** on that page instead.
+
+## The form
+
+<GuideBuilder />
+
+## What happens when you click Create on GitHub
+1. GitHub opens a page for a new file in `docs/11-classes/` with your text already in it.
+2. If you are not a member of the project, GitHub makes a copy for you (a fork) and offers **Propose new file**. This is normal.
+3. Press **Propose new file**, then **Create pull request**. Use a title like `add: Gladiator guide`. The pull request is checked automatically and reviewed by a maintainer.
+4. When it is merged, the guide appears in the [Classes](../11-classes/overview.mdx) section.
+
+If the guide is too long for a link, the button copies it first. Paste it into the editor on the GitHub page (Ctrl+V).
+
+## Writing it by hand
+Prefer to work in a file? Copy `templates/class-guide.md` to `docs/11-classes/<class>.md`, where `<class>` is the lowercase class name from `data/classes.yml` (`gladiator`, `templar`, ...). Replace every placeholder line (each one starts with the word "to do" in capital letters). The check (`npm run check`) fails while one is left in a class guide.
+
+A class guide is a normal page, so the [Add a New Page](./add-a-new-page.md) steps for checking and sending apply.
+
+Back to [How to Contribute](./how-to-contribute.md)

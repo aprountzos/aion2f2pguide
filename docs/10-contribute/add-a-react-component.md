@@ -30,7 +30,7 @@ The website is built with [Docusaurus](https://docusaurus.io), so any page can s
 | `src/generated/data.json` | The guide data for components (generated, never edit it) |
 | `src/theme/` | Wrappers around Docusaurus theme parts (page footer, page notices) and `MDXComponents.js`, which makes the widgets available in pages |
 
-Examples to read first: `LevelFinder` (a full interactive widget), `DataTable` (sorting and filtering) and `Contributors` (a simple one).
+Examples to read first: `LevelFinder` (a full interactive widget), `DataTable` (sorting and filtering), `Checklist` (ticks remembered in the browser, with a daily or weekly reset), `GuideBuilder` (a form that writes a Markdown page) and `Contributors` (a simple one).
 
 ## Create a component
 ```bash
@@ -119,9 +119,23 @@ To add **a new kind of data**, for example item prices:
 
 Ask in an issue first if you are unsure. A maintainer can help with the data scripts.
 
+## Using the visitor's level and faction
+Visitors can choose their faction and level once (home page, Level Finder, a table, or the chip in the navbar). It is remembered in their browser, and any widget can start from it:
+
+```jsx
+import {useProfile} from '../profile';
+
+const {faction, level, hasFaction, hasLevel, set} = useProfile();
+// faction ('elyos' | 'asmodian') and level (1-45) always have a value to show
+// hasFaction / hasLevel say whether the visitor really chose them: only pre-fill or filter when true
+set({level: 23}); // saves it for every widget
+```
+
+Pre-fill visible controls (like the "My level" box of a table) rather than silently hiding data, so the visitor can see why rows are missing.
+
 ## Advanced: changing the site itself
 - **Navbar, footer, plugins:** `docusaurus.config.js`.
-- **Wrap a Docusaurus component** (add something above or below a part of every page): put a file at `src/theme/<Component>/index.js` that imports `@theme-original/<Component>` and renders it with your addition. See `src/theme/DocItem/Footer/index.js` (the comment box) and `src/theme/DocItem/Content/index.js` (the out-of-date notice).
+- **Wrap a Docusaurus component** (add something above or below a part of every page): put a file at `src/theme/<Component>/index.js` that imports `@theme-original/<Component>` and renders it with your addition. See `src/theme/DocItem/Footer/index.js` (the comment box) and `src/theme/MDXComponents.js` (the "Updated ..." line under every page title).
 - **A page that is not part of the guide** (a landing page, a tool): add a React page in `src/pages/`. It gets its own address. Prefer a normal page with a widget, which keeps the sidebar and search working.
 - **Settings for the maintainer** (repository, comment box): `site.config.json`.
 

@@ -1,32 +1,21 @@
-import React, {useEffect, useMemo, useState} from 'react';
+import React, {useMemo} from 'react';
 import Link from '@docusaurus/Link';
 import data from '@site/src/generated/data.json';
 import {inline, plain} from '../inline';
-import {CAP, FACTIONS, GATHER_FROM, LEATHER_FROM, computeFinder, readSaved, saveChoice} from '../finder';
+import {CAP, FACTIONS, GATHER_FROM, LEATHER_FROM, computeFinder} from '../finder';
+import {useProfile} from '../profile';
 import styles from './styles.module.css';
 
 // Type a level, pick a faction, and see the zones, gathering nodes, Raw Leather mobs and unlocks
 // around it. Everything is computed in the browser from data/*.yml.
 
 export default function LevelFinder() {
-  const [faction, setFaction] = useState('elyos');
-  const [level, setLevel] = useState(10);
-
-  useEffect(() => {
-    const saved = readSaved();
-    if (saved && saved.faction) setFaction(saved.faction);
-    if (saved && saved.level) setLevel(saved.level);
-  }, []);
-  useEffect(() => {
-    saveChoice(faction, level);
-  }, [faction, level]);
+  const {faction, level, set} = useProfile();
+  const setFaction = (f) => set({faction: f});
 
   const result = useMemo(() => computeFinder(data, faction, level), [faction, level]);
 
-  const setLevelSafe = (v) => {
-    const n = Math.max(1, Math.min(CAP, Math.round(Number(v)) || 1));
-    setLevel(n);
-  };
+  const setLevelSafe = (v) => set({level: v});
 
   return (
     <div className={styles.finder}>

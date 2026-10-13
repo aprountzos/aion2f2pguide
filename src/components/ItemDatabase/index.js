@@ -1,6 +1,8 @@
 import React, {useEffect, useMemo, useState} from 'react';
 import Link from '@docusaurus/Link';
 import {inline, plain} from '../inline';
+import {FACTIONS} from '../finder';
+import {useProfile} from '../profile';
 import styles from './styles.module.css';
 
 // Item database. The items come from data/items.yml (see scripts/lib/data.mjs), turned into
@@ -24,6 +26,7 @@ const host = (url) => {
 };
 
 export default function ItemDatabase({category = '', type = ''}) {
+  const profile = useProfile();
   const [db, setDb] = useState(null);
   const [f, setF] = useState({q: '', category, type, grade: '', faction: '', level: ''});
   const [sort, setSort] = useState({col: 'name', dir: 1});
@@ -112,6 +115,33 @@ export default function ItemDatabase({category = '', type = ''}) {
     });
     return out;
   }, [items, db, f, sort]);
+
+  // "For my character": the visitor's saved faction and level as filters (only offered once they chose one)
+  const hasProfile = profile.hasFaction || profile.hasLevel;
+  const mineOn =
+    hasProfile &&
+    (!profile.hasFaction || f.faction === profile.faction) &&
+    (!profile.hasLevel || f.level === String(profile.level));
+  const toggleMine = () => {
+    setF((old) => {
+      const next = {...old};
+      if (mineOn) {
+        if (profile.hasFaction) next.faction = '';
+        if (profile.hasLevel) next.level = '';
+      } else {
+        if (profile.hasFaction) next.faction = profile.faction;
+        if (profile.hasLevel) next.level = String(profile.level);
+      }
+      return next;
+    });
+    setShown(PAGE);
+  };
+  const mineLabel = [
+    profile.hasFaction ? FACTIONS.find((x) => x.id === profile.faction).name : null,
+    profile.hasLevel ? `level ${profile.level}` : null,
+  ]
+    .filter(Boolean)
+    .join(', ');
 
   const filtered = Object.entries(f).some(([k, v]) => v && !((k === 'category' && v === category) || (k === 'type' && v === type)));
   const reset = () => {
@@ -203,6 +233,11 @@ export default function ItemDatabase({category = '', type = ''}) {
             onChange={(e) => set('level', e.target.value)}
           />
         </label>
+        {hasProfile && (
+          <button type="button" className={styles.link} aria-pressed={mineOn} onClick={toggleMine}>
+            {mineOn ? `Showing for ${mineLabel} (show all)` : `Only for me (${mineLabel})`}
+          </button>
+        )}
         {filtered && (
           <button type="button" className={styles.link} onClick={reset}>
             Reset

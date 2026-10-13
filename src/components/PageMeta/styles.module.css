@@ -1,0 +1,10 @@
+.meta {
+  margin: -0.5rem 0 1.5rem;
+  font-size: 0.9rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.stale {
+  padding-left: 0.7rem;
+  border-left: 3px solid var(--ifm-color-warning);
+}

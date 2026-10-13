@@ -25,6 +25,11 @@ const WIDGETS = listWidgets();
 const strict = process.argv.includes('--strict');
 const DOCS = path.join(root, 'docs');
 
+// class ids from data/classes.yml (a class guide page is docs/11-classes/<id>.md)
+const CLASS_IDS = new Set(
+  [...(fs.existsSync(path.join(root, 'data', 'classes.yml')) ? fs.readFileSync(path.join(root, 'data', 'classes.yml'), 'utf8') : '').matchAll(/^- id:\s*([a-z0-9-]+)/gm)].map((m) => m[1]),
+);
+
 const errors = [];
 const warnings = [];
 const err = (file, line, msg) => errors.push(`${file}${line ? `:${line}` : ''}  ${msg}`);
@@ -67,6 +72,15 @@ function lintPage({abs, rel, parts}) {
     if (!/^[a-z0-9][a-z0-9._-]*$/.test(seg)) {
       err(file, 0, `"${seg}" is not a good file or folder name. Use lowercase letters, digits and hyphens, like "gathering-by-level.md"`);
     }
+  }
+
+  // --- class guides: named after a class, and no unfinished template lines left
+  if (rel.startsWith('11-classes/') && rel !== '11-classes/overview.mdx') {
+    const id = path.posix.basename(rel).replace(/\.mdx?$/, '');
+    if (!CLASS_IDS.has(id)) err(file, 0, `"${id}" is not a class in data/classes.yml. A class guide is named after its class, like "gladiator.md"`);
+    text.split('\n').forEach((l, i) => {
+      if (/\bTODO\b/.test(l)) err(file, i + 1, 'unfinished template line (TODO). Fill it in or remove the line');
+    });
   }
 
   // --- frontmatter

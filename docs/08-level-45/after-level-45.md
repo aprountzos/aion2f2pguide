@@ -30,6 +30,6 @@ Level 45 is the Global Season 1 cap. **All monsters scale to level 45**, so zone
 ## Gathering at 45+
 Go where nodes are densest and nearest a teleport. After the pet-soul gap disappears, farm leather in the Abyss Swarm Colony (Lower Reshanta) or Eltnen/Morheim at ~7.8% per kill. See [Raw Leather](../04-leather/raw-leather.md).
 
-See also [Daily and Weekly Checklist](../01-basics/daily-and-weekly-checklist.md).
+See also [Daily and Weekly Checklist](../01-basics/daily-and-weekly-checklist.mdx).
 
 Back to [Home](../index.mdx)

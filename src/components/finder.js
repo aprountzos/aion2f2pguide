@@ -1,12 +1,12 @@
-import {overlaps, parseLevels, store} from './inline';
+import {overlaps, parseLevels} from './inline';
 
-// The level / faction lookup shared by <LevelFinder /> and the home page. Pure function: give it the
+// The level / faction lookup shared by <LevelFinder /> and the home page (the visitor's choice itself
+// lives in ./profile.js). Pure function: give it the
 // generated data (src/generated/data.json), a faction id and a level; get back what is near that level.
 
 export const GATHER_FROM = 10; // gathering starts at level 10
 export const LEATHER_FROM = 15; // Raw Leather is usable from level 15
 export const CAP = 45;
-export const KEY = 'aion2.levelfinder'; // localStorage key, so both finders remember the same choice
 
 export const FACTIONS = [
   {id: 'elyos', name: 'Elyos', land: 'Verteron'},
@@ -47,22 +47,4 @@ export function computeFinder(data, faction, level) {
   const next = miles.filter((m) => Math.min(...m.nums) > level).slice(0, 2);
 
   return {here, near, wide, best, leatherNear, leatherUnknown, recent, next};
-}
-
-/** The faction and level the visitor chose last time, or null. */
-export function readSaved() {
-  try {
-    const saved = JSON.parse(store.get(KEY) || 'null');
-    if (!saved) return null;
-    const out = {};
-    if (FACTIONS.some((f) => f.id === saved.faction)) out.faction = saved.faction;
-    if (Number.isInteger(saved.level) && saved.level >= 1 && saved.level <= CAP) out.level = saved.level;
-    return out;
-  } catch {
-    return null;
-  }
-}
-
-export function saveChoice(faction, level) {
-  store.set(KEY, JSON.stringify({faction, level}));
 }

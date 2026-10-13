@@ -75,3 +75,12 @@
   font-size: 0.8rem;
   color: var(--ifm-color-emphasis-700);
 }
+
+.mine {
+  align-self: center;
+  padding: 0.1rem 0.6rem;
+  border: 1px solid var(--ifm-color-primary);
+  border-radius: 999px;
+  font-size: 0.85rem;
+  color: var(--ifm-color-primary);
+}
