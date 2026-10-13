@@ -1,0 +1,19 @@
+# When the in-game counters reset. Used by the checklists (<Checklist reset="daily"> and "weekly"),
+# which clear their ticks by themselves at the next reset once this file is filled in.
+#
+# hour:       the hour of the reset, 0-23, in server time.
+# utc_offset: the server time zone as hours from UTC (for example 9 means UTC+9, -5 means UTC-5).
+# day:        (weekly only) the weekday of the reset, in English.
+#
+# Leave a value empty (null) when it is not known. Until hour and utc_offset are both set, a checklist
+# does NOT clear itself: visitors use its "Clear ticks" button instead. Do not guess: the time zone is not
+# published, check the in-game countdown ("Weekly recharge in") and write down where you saw it.
+
+weekly:
+  day: Wednesday
+  hour: 16
+  utc_offset: null
+
+daily:
+  hour: null
+  utc_offset: null

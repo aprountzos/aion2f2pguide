@@ -7,12 +7,13 @@
 //   - src/generated/data.json       tables and lists for the website components (git-ignored)
 //   - src/generated/items.json      the item database (<ItemDatabase />)
 //   - src/generated/questions.json  the answered questions (<Questions />)
+//   - src/generated/classes.json    the class list with links to the class guides (<ClassIndex />, <GuideBuilder />)
 //   - src/generated/sections.json   the directory on the home page (<Home />), read from the docs/ folders
 
 import fs from 'node:fs';
 import path from 'node:path';
 import {meta, root} from './site-meta.mjs';
-import {NODE_LABELS, NODE_TYPES, buildItems, buildQuestions, buildTables, loadData} from './lib/data.mjs';
+import {NODE_LABELS, NODE_TYPES, buildClasses, buildItems, buildQuestions, buildTables, loadData} from './lib/data.mjs';
 import {buildSections, pageIndex} from './lib/docs.mjs';
 
 const DOCS = path.join(root, 'docs');
@@ -55,12 +56,14 @@ fs.writeFileSync(
     leather: data.leather,
     milestones: data.milestones,
     patches: (data.patches || []).slice(0, 3),
+    resets: data.resets,
     tables: {en: buildTables(data, 'en')},
   }) + '\n',
 );
 const pages = pageIndex(DOCS);
 fs.writeFileSync(path.join(GENERATED, 'items.json'), JSON.stringify(buildItems(data, pages)) + '\n');
 fs.writeFileSync(path.join(GENERATED, 'questions.json'), JSON.stringify(buildQuestions(data, pages)) + '\n');
+fs.writeFileSync(path.join(GENERATED, 'classes.json'), JSON.stringify(buildClasses(data, pages)) + '\n');
 fs.writeFileSync(path.join(GENERATED, 'sections.json'), JSON.stringify(buildSections(DOCS)) + '\n');
 if (!fs.existsSync(path.join(GENERATED, 'contributors.json'))) {
   fs.writeFileSync(path.join(GENERATED, 'contributors.json'), '[]\n');

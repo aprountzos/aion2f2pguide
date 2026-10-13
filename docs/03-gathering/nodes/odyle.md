@@ -6,7 +6,7 @@ sidebar_position: 4
 # Odyle
 
 :::warning[Not the same as Odyle Energy]
-**Odyle** is a crafting material you gather. **Odyle Energy** is a refilling resource spent on reward cubes. See [Glossary](../../01-basics/glossary.md) and [Daily and Weekly Checklist](../../01-basics/daily-and-weekly-checklist.md).
+**Odyle** is a crafting material you gather. **Odyle Energy** is a refilling resource spent on reward cubes. See [Glossary](../../01-basics/glossary.md) and [Daily and Weekly Checklist](../../01-basics/daily-and-weekly-checklist.mdx).
 :::
 
 ## What it is

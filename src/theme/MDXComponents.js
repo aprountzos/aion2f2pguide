@@ -2,6 +2,7 @@ import React from 'react';
 import Heading from '@theme/Heading';
 import MDXComponents from '@theme-original/MDXComponents';
 import PageMeta from '../components/PageMeta';
+import TaskItem from '../components/Checklist/TaskItem';
 
 // Makes every widget available in .mdx pages without an import: <LevelFinder />, <DataTable id="..." />.
 // A widget is a folder src/components/<Name>/ with an index.js and a widget.json. Create one with:
@@ -24,4 +25,8 @@ const H1 = (props) => (
   </>
 );
 
-export default {...MDXComponents, h1: H1, ...widgets};
+// A task-list item ("- [ ] text") becomes a checkbox that keeps its tick in the visitor's browser.
+const Li = (props) =>
+  /task-list-item/.test(props.className || '') ? <TaskItem {...props} /> : <MDXComponents.li {...props} />;
+
+export default {...MDXComponents, h1: H1, li: Li, ...widgets};

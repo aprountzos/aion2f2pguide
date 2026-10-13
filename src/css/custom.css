@@ -251,3 +251,78 @@ html.landing-page .landing h1 {
 .table-of-contents__link--active {
   font-weight: 600;
 }
+
+/* ---------------------------------------------------------------- footer */
+/* Quiet: same page background tone, a hairline on top, small text. The variables are set on .footer--dark
+   itself, because Infima defines them there (setting them on :root has no effect). */
+.footer--dark {
+  --ifm-footer-padding-vertical: 1.5rem;
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+  font-size: 0.88rem;
+}
+
+html:not([data-theme='dark']) .footer--dark {
+  --ifm-footer-background-color: #f2f6fb;
+  --ifm-footer-color: var(--ifm-color-emphasis-700);
+  --ifm-footer-link-color: var(--ifm-color-emphasis-800);
+  --ifm-footer-title-color: var(--ifm-color-emphasis-900);
+}
+
+[data-theme='dark'] .footer--dark {
+  --ifm-footer-background-color: #0b1220;
+  --ifm-footer-color: #93a5c0;
+  --ifm-footer-link-color: #b9c6da;
+  --ifm-footer-title-color: #e9eef8;
+  border-top-color: rgba(233, 238, 248, 0.1);
+}
+
+.footer--dark .footer__title {
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.footer--dark .footer__item {
+  margin-bottom: 0.1rem;
+}
+
+.footer--dark .footer__copyright {
+  max-width: 52rem;
+  margin: 0 auto;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  opacity: 0.85;
+}
+
+/* ---------------------------------------------------------------- navbar */
+/* Items stay on one line; on medium screens they sit closer together so the site title is not cut off. */
+.navbar__item,
+.navbar__title {
+  white-space: nowrap;
+}
+
+@media (min-width: 997px) and (max-width: 1400px) {
+  .navbar__item.navbar__link {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  .navbar__title {
+    font-size: 1.05rem;
+  }
+}
+
+/* Below 1200px the items and the profile chip need the room: the logo alone is the brand. */
+@media (min-width: 997px) and (max-width: 1199px) {
+  .navbar__brand {
+    flex-shrink: 0;
+    margin-right: 0.75rem;
+  }
+  .navbar__title {
+    display: none;
+  }
+  /* Items and GitHub are also in the sidebar and the footer */
+  .navbar__items a[href$='/reference/item-database'],
+  .navbar__items--right a[href^='https://github.com'] {
+    display: none;
+  }
+}

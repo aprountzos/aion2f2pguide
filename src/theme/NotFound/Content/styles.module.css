@@ -1,0 +1,57 @@
+.box {
+  max-width: 44rem;
+  margin: 0 auto;
+}
+
+.title {
+  font-family: var(--aion-display);
+  font-weight: 400;
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  margin-bottom: 0.6rem;
+}
+
+.lead {
+  color: var(--ifm-color-emphasis-800);
+  margin-bottom: 1.4rem;
+}
+
+.list {
+  list-style: none;
+  margin: 0 0 1.6rem;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+  gap: 0.7rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 8px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.card:hover {
+  border-color: var(--ifm-color-primary);
+  text-decoration: none;
+  color: inherit;
+}
+
+.label {
+  font-weight: 600;
+  color: var(--ifm-color-primary);
+}
+
+.text {
+  font-size: 0.88rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.foot {
+  font-size: 0.9rem;
+  color: var(--ifm-color-emphasis-700);
+}

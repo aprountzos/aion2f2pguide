@@ -1,0 +1,61 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: 0.9rem;
+  margin: 1.2rem 0 1.5rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: 0.9rem 1rem 0.8rem;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 8px;
+  background: var(--ifm-background-surface-color);
+}
+
+.name {
+  margin: 0 0 0.15rem;
+  font-size: 1.15rem;
+}
+
+.name a {
+  text-decoration: none;
+}
+
+.role {
+  margin: 0 0 0.5rem;
+  color: var(--ifm-color-emphasis-800);
+}
+
+.weapon {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.label {
+  color: var(--ifm-color-emphasis-600);
+  margin-right: 0.25rem;
+}
+
+.note {
+  margin: 0.4rem 0 0;
+  font-size: 0.85rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.action {
+  margin: 0.7rem 0 0;
+  font-size: 0.9rem;
+}
+
+.none {
+  color: var(--ifm-color-emphasis-700);
+}
+
+.source {
+  margin: auto 0 0;
+  padding-top: 0.6rem;
+  font-size: 0.78rem;
+  color: var(--ifm-color-emphasis-600);
+}

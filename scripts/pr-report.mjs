@@ -112,6 +112,7 @@ const KEY = {
   'data/patches.yml': (r) => r.date,
   'data/items.yml': (r) => r.id,
   'data/questions.yml': (r) => r.id,
+  'data/classes.yml': (r) => r.id,
 };
 
 function rowsOf(file, text) {

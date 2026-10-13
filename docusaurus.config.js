@@ -86,6 +86,7 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      image: 'img/social-card.png',
       colorMode: {
         defaultMode: 'dark',
         respectPrefersColorScheme: true,
@@ -100,6 +101,7 @@ const config = {
         logo: {
           alt: meta.siteTitle,
           src: 'img/logo.svg',
+          srcDark: 'img/logo-dark.svg',
         },
         items: [
           {to: '/leveling/level-finder', label: 'Level Finder', position: 'left'},
@@ -119,8 +121,9 @@ const config = {
             title: 'Guide',
             items: [
               {label: 'Level Finder', to: '/leveling/level-finder'},
+              {label: 'Daily and weekly checklist', to: '/basics/daily-and-weekly-checklist'},
+              {label: 'Classes', to: '/classes/overview'},
               {label: 'Sources', to: '/reference/sources'},
-              {label: 'Help Wanted', to: '/contribute/help-wanted'},
             ],
           },
           {
@@ -128,14 +131,15 @@ const config = {
             items: [
               {label: 'How to contribute', to: '/contribute'},
               {label: 'Report an error', href: `${meta.repoUrl}/issues/new?template=data-correction.yml`},
-              {label: 'Make your first pull request', to: '/contribute/make-your-first-pull-request'},
+              {label: 'Write a class guide', to: '/contribute/write-a-class-guide'},
+              {label: 'Help Wanted', to: '/contribute/help-wanted'},
             ],
           },
           {
             title: 'Project',
             items: [
               {label: 'Changelog', to: '/changelog'},
-              {label: `v${meta.version} · ${meta.dataChecked}`, to: '/changelog'}, // version and "data checked" date
+              {label: `Version ${meta.version}, data checked ${meta.dataChecked}`, to: '/changelog'},
               {label: 'GitHub', href: meta.repoUrl},
               {label: 'License and credits', to: '/contribute/license-and-credits'},
               {label: 'Code of Conduct', href: `${meta.repoUrl}/blob/${meta.branch}/CODE_OF_CONDUCT.md`},

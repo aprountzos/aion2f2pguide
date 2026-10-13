@@ -18,6 +18,7 @@ This guide is community-maintained. Aion 2 gets patches every week, and one pers
 | Report a wrong or outdated number | Open a [correction issue](https://github.com/your-github-username/your-repo-name/issues/new?template=data-correction.yml) | 2 minutes |
 | Fix a typo or number myself | Click **Edit this page** at the bottom of any page, then follow [Make Your First Pull Request](./make-your-first-pull-request.md) (browser only, no tools) | 5 minutes |
 | Add a whole new page or section | [Add a New Page](./add-a-new-page.md) | 30+ minutes |
+| Write a guide for a class | [Write a Class Guide](./write-a-class-guide.mdx), a form does the formatting | 20 minutes |
 | Add an item to the item database | [Add an Item](./add-an-item.md) | 10 minutes |
 | Answer a player's question | Reply in the discussion on the [Questions](../questions.mdx) page, or [add a checked answer](./answer-a-question.md) | 5 minutes |
 | Suggest a topic I would like covered | Open a [content request](https://github.com/your-github-username/your-repo-name/issues/new?template=new-content.yml) | 2 minutes |
@@ -48,6 +49,7 @@ You need a free [GitHub](https://github.com) account for everything above.
 | `04-leather` | Raw Leather rates and farming by level |
 | `05-crafting`, `06-gear`, `07-economy`, `08-level-45` | Topic pages |
 | `09-reference` | Zone levels, checklist, item database, **Sources** |
+| `11-classes` | One guide per class (written with the [class guide form](./write-a-class-guide.mdx)) |
 | `10-contribute` | These pages |
 | `questions.mdx` | The Questions page |
 

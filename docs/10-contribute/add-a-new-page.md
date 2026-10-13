@@ -21,8 +21,9 @@ Choose the folder where a reader would look for it. Pages live in the `docs/` fo
 | `04-leather` | Leather and monster-drop farming |
 | `05-crafting`, `06-gear`, `07-economy`, `08-level-45` | Matching topics |
 | `09-reference` | Raw tables and data used by other pages |
+| `11-classes` | Class guides, one page per class. Use [Write a Class Guide](./write-a-class-guide.mdx) |
 
-If nothing fits, open an issue before creating a new folder. Folders are numbered (`11-pets`) and the number sets the order in the sidebar.
+If nothing fits, open an issue before creating a new folder. Folders are numbered (`12-pets`) and the number sets the order in the sidebar.
 
 ## 2. Create the page
 The easy way, from the project folder:
@@ -40,6 +41,7 @@ This creates `docs/03-gathering/nodes/diamond-nodes.md` from `templates/page.md`
 - Add your sources to [Sources](../09-reference/sources.md).
 - Use `.md` for normal pages. A page that shows a component (a table from the data, the Level Finder) is `.mdx`. In `.mdx` pages write `\{`, `\}` and `&lt;` for the characters `{`, `}` and `<` in normal text.
 - **Big tables come from data.** Zones, gathering nodes, leather rates and milestones are stored in `data/*.yml` and shown with `<DataTable id="gathering-asmodian" />` in an `.mdx` page (see `docs/03-gathering/gathering-by-level.mdx`). To change a number there, edit the data file, not the page. The list of patches on the Patch History page is also generated from the data: edit `data/patches.yml` and run `npm run data`. A small table in a new page can simply be a normal Markdown table.
+- **Checklists readers can tick.** A task list (`- [ ] Item`) can be ticked by the reader and the ticks are remembered in their browser. To clear the ticks at the daily or weekly reset, wrap the list in `<Checklist reset="daily">` or `<Checklist reset="weekly">` (the page must be `.mdx`). See `docs/01-basics/daily-and-weekly-checklist.mdx`. The reset time is in `data/resets.yml`.
 - **Interactive parts.** To build a new one, see [Add a React Component](./add-a-react-component.md).
 
 ## 4. Make it findable

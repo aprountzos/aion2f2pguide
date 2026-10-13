@@ -1,0 +1,14 @@
+{
+  "description": "A checklist whose ticks are remembered in the visitor's browser. Wrap a markdown task list ('- [ ] item') in it. It can clear itself at the daily or weekly reset (times in data/resets.yml). A task list outside <Checklist> also keeps its ticks.",
+  "props": {
+    "reset": {
+      "type": "string",
+      "required": false,
+      "values": ["manual", "daily", "weekly"]
+    },
+    "id": {
+      "type": "string",
+      "required": false
+    }
+  }
+}
