@@ -1,0 +1,30 @@
+.facts {
+  margin: 1.2rem 0 1.6rem;
+  padding: 0.3rem 1.1rem;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 8px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  gap: 0.5rem;
+  padding: 0.45rem 0;
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.row:last-child {
+  border-bottom: 0;
+}
+
+.row dt {
+  color: var(--ifm-color-emphasis-700);
+}
+
+.row dd {
+  margin: 0;
+}
+
+.missing {
+  color: var(--ifm-color-danger);
+}

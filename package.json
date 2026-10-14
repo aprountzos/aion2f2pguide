@@ -1,6 +1,6 @@
 {
   "name": "aion2-guide",
-  "version": "0.2.0",
+  "version": "0.3.1",
   "private": true,
   "description": "Community-maintained Aion 2 free-to-play guide (gathering, leather, leveling), organized by level. Published with Docusaurus.",
   "license": "MIT",

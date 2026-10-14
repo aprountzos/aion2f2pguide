@@ -44,6 +44,7 @@ const pages = collectPages(DOCS, {skip: ['changelog.md']}); // changelog.md is g
 const byRel = new Map(pages.map((p) => [p.rel, p]));
 const byBase = new Map();
 for (const p of pages) {
+  if (p.rel.startsWith('11-classes/')) continue; // class pages and guides: every class has an "index", guides may share names
   const base = path.posix.basename(p.rel).replace(/\.mdx?$/, '');
   if (byBase.has(base)) err(`docs/${p.rel}`, 0, `the file name "${base}" is also used by docs/${byBase.get(base)}. File names must be unique`);
   else byBase.set(base, p.rel);
@@ -74,13 +75,22 @@ function lintPage({abs, rel, parts}) {
     }
   }
 
-  // --- class guides: named after a class, and no unfinished template lines left
+  // --- class pages: docs/11-classes/<class>/index.mdx is the class page, the other pages in the folder are
+  // guides written by players (they need an author, and no unfinished template lines)
+  const classGuide = /^11-classes\/([^/]+)\/(?!index\.mdx?$)[^/]+$/.test(rel);
   if (rel.startsWith('11-classes/') && rel !== '11-classes/overview.mdx') {
-    const id = path.posix.basename(rel).replace(/\.mdx?$/, '');
-    if (!CLASS_IDS.has(id)) err(file, 0, `"${id}" is not a class in data/classes.yml. A class guide is named after its class, like "gladiator.md"`);
-    text.split('\n').forEach((l, i) => {
-      if (/\bTODO\b/.test(l)) err(file, i + 1, 'unfinished template line (TODO). Fill it in or remove the line');
-    });
+    const folder = rel.split('/')[1];
+    if (rel.split('/').length !== 3) err(file, 0, 'pages of the Classes section live in docs/11-classes/<class>/, for example docs/11-classes/gladiator/leveling-guide.md');
+    else if (!CLASS_IDS.has(folder)) err(file, 0, `"${folder}" is not a class in data/classes.yml. The folder is named after the class, like "gladiator"`);
+    if (classGuide) {
+      text.split('\n').forEach((l, i) => {
+        if (/\bTODO\b/.test(l)) err(file, i + 1, 'unfinished template line (TODO). Fill it in or remove the line');
+      });
+      const fmData = hasFrontmatter ? parseFrontmatter(fm) : {};
+      if (!/^[A-Za-z0-9](?:[A-Za-z0-9-]{0,38})$/.test(fmData.author || '')) {
+        err(file, 1, 'frontmatter needs "author: your-github-name" (your GitHub user name, without the @)');
+      }
+    }
   }
 
   // --- frontmatter
@@ -97,7 +107,9 @@ function lintPage({abs, rel, parts}) {
     if (parts.length > 0 && !data.description) {
       warn(file, 1, 'add a one-sentence "description:" to the frontmatter. It is shown on the section page and in search results');
     }
-    if (!/^-?\d+$/.test(data.sidebar_position || '')) {
+    if (classGuide && data.sidebar_position === undefined) {
+      // guides are listed alphabetically unless the author sets a position
+    } else if (!/^-?\d+$/.test(data.sidebar_position || '')) {
       err(file, 1, 'frontmatter needs an integer "sidebar_position" (order inside its folder)');
     } else if (!isHome) {
       const folder = parts.join('/');

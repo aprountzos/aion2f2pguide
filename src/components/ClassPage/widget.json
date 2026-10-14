@@ -1,0 +1,6 @@
+{
+  "description": "The facts of one class (role, weapon, source, date checked) from data/classes.yml. Put it at the top of the class page.",
+  "props": {
+    "id": {"type": "string", "required": true}
+  }
+}

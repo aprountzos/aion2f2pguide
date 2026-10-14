@@ -181,6 +181,7 @@ export function pageUrl(rel, slug) {
 export function pageIndex(dir) {
   const index = new Map();
   for (const p of collectPages(dir, {skip: ['changelog.md']})) {
+    if (p.rel.startsWith('11-classes/')) continue; // class pages and guides are found through data/classes.yml
     const {fm, body} = readPage(p.abs);
     const title = (body.match(/^#\s+(.+?)\s*$/m) || [])[1] || p.rel;
     const entry = {rel: p.rel, url: pageUrl(p.rel, parseFrontmatter(fm).slug), title};
@@ -225,11 +226,13 @@ export function buildSections(dir) {
         });
       } else if (f.isDirectory() && !f.name.startsWith('_')) {
         const sub = readJson(path.join(folder, f.name, '_category_.json'));
-        const count = collectPages(path.join(folder, f.name)).length;
-        if (count) {
+        const inner = collectPages(path.join(folder, f.name));
+        const index = inner.find((p) => /^index\.mdx?$/.test(p.rel));
+        const count = inner.length - (index ? 1 : 0);
+        if (inner.length) {
           groups.push({
             title: sub.label || stripNumberPrefix(f.name),
-            url: sub.link && sub.link.slug ? sub.link.slug : null,
+            url: sub.link && sub.link.slug ? sub.link.slug : index ? pageUrl(`${e.name}/${f.name}/${index.rel}`) : null,
             count,
             position: typeof sub.position === 'number' ? sub.position : 999,
           });

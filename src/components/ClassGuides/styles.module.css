@@ -1,0 +1,52 @@
+.list {
+  list-style: none;
+  margin: 0.8rem 0 1.4rem;
+  padding: 0;
+  display: grid;
+  gap: 0.7rem;
+}
+
+.item {
+  padding: 0.7rem 1rem 0.6rem;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 8px;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.text {
+  margin: 0.2rem 0 0;
+}
+
+.meta {
+  margin: 0.3rem 0 0;
+  font-size: 0.85rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.empty {
+  margin: 0.8rem 0 1.2rem;
+  color: var(--ifm-color-emphasis-800);
+}
+
+.cta {
+  margin: 1.2rem 0;
+  padding: 0.9rem 1.1rem;
+  border-left: 3px solid var(--ifm-color-primary);
+  background: var(--ifm-color-emphasis-100);
+  border-radius: 0 8px 8px 0;
+}
+
+.ctaText {
+  margin: 0 0 0.7rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 0;
+}

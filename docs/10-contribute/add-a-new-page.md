@@ -21,8 +21,9 @@ Choose the folder where a reader would look for it. Pages live in the `docs/` fo
 | `04-leather` | Leather and monster-drop farming |
 | `05-crafting`, `06-gear`, `07-economy`, `08-level-45` | Matching topics |
 | `09-reference` | Raw tables and data used by other pages |
-| `11-classes` | Class guides, one page per class. Use [Write a Class Guide](./write-a-class-guide.mdx) |
+| `11-classes` | One folder per class, guides inside it. Use [Write a Class Guide](./write-a-class-guide.mdx) |
 
+If nothing fits, open an issue before creating a new folder. Folders are numbered (`12-pets`) and the number sets the order in the sidebar.
 If nothing fits, open an issue before creating a new folder. Folders are numbered (`12-pets`) and the number sets the order in the sidebar.
 
 ## 2. Create the page

@@ -4,10 +4,12 @@
 //
 // Example:
 //   npm run new-page -- "03-gathering/nodes" "Diamond Nodes"
+//   npm run new-page -- "11-classes/gladiator" "Leveling 1 to 45"   (a class guide: uses templates/class-guide.md)
 // The folder is a folder inside docs/ (see the list printed when it does not exist).
 
 import fs from 'node:fs';
 import path from 'node:path';
+import YAML from 'yaml';
 import {root} from './site-meta.mjs';
 import {collectDirs, collectPages, parseFrontmatter, slugify, splitFrontmatter} from './lib/docs.mjs';
 
@@ -66,19 +68,37 @@ const rel = (to) => {
   return r.startsWith('.') ? r : './' + r;
 };
 const today = new Date().toISOString().slice(0, 10);
-const content = fs
-  .readFileSync(path.join(root, 'templates', 'page.md'), 'utf8')
-  .replaceAll('{{DATE}}', today)
-  .replaceAll('{{POSITION}}', String(position))
-  .replaceAll('{{TITLE}}', title)
-  .replaceAll('{{HOME}}', rel('index.mdx'))
-  .replaceAll('{{SOURCES}}', rel('09-reference/sources.md'));
+
+// A page in docs/11-classes/<class>/ is a class guide: it uses its own template and needs no sidebar_position.
+const classId = (path.relative(docs, dir).split(path.sep).join('/').match(/^11-classes\/([^/]+)$/) || [])[1];
+let content;
+if (classId) {
+  const classes = YAML.parse(fs.readFileSync(path.join(root, 'data', 'classes.yml'), 'utf8')) || [];
+  const found = classes.find((c) => c.id === classId);
+  if (!found) {
+    console.error(`"${classId}" is not a class in data/classes.yml. Classes: ${classes.map((c) => c.id).join(', ')}`);
+    process.exit(1);
+  }
+  content = fs
+    .readFileSync(path.join(root, 'templates', 'class-guide.md'), 'utf8')
+    .replaceAll('{{DATE}}', today)
+    .replaceAll('{{CLASS}}', found.name)
+    .replace(/^# .*$/m, `# ${found.name}: ${title}`);
+} else {
+  content = fs
+    .readFileSync(path.join(root, 'templates', 'page.md'), 'utf8')
+    .replaceAll('{{DATE}}', today)
+    .replaceAll('{{POSITION}}', String(position))
+    .replaceAll('{{TITLE}}', title)
+    .replaceAll('{{HOME}}', rel('index.mdx'))
+    .replaceAll('{{SOURCES}}', rel('09-reference/sources.md'));
+}
 
 const dest = path.join(dir, `${slug}.md`);
 fs.writeFileSync(dest, content);
 
 console.log(`Created docs/${path.relative(docs, dest).split(path.sep).join('/')}`);
 console.log('Next steps:');
-console.log('  1. Write the content (keep numbers exact, add sources to docs/09-reference/sources.md).');
-console.log('  2. Link to it from a related page and from the front page (docs/index.mdx) if it is a major topic.');
-console.log('  3. npm run check   (lint + build)');
+console.log(classId ? '  1. Replace every placeholder line (TODO) and set your GitHub name in author:.' : '  1. Write the content (keep numbers exact, add sources to docs/09-reference/sources.md).');
+if (!classId) console.log('  2. Link to it from a related page and from the front page (docs/index.mdx) if it is a major topic.');
+console.log(`  ${classId ? 2 : 3}. npm run check   (lint + build)`);

@@ -30,7 +30,7 @@ The website is built with [Docusaurus](https://docusaurus.io), so any page can s
 | `src/generated/data.json` | The guide data for components (generated, never edit it) |
 | `src/theme/` | Wrappers around Docusaurus theme parts (page footer, page notices) and `MDXComponents.js`, which makes the widgets available in pages |
 
-Examples to read first: `LevelFinder` (a full interactive widget), `DataTable` (sorting and filtering), `Checklist` (ticks remembered in the browser, with a daily or weekly reset), `GuideBuilder` (a form that writes a Markdown page) and `Contributors` (a simple one).
+Examples to read first: `LevelFinder` (a full interactive widget), `DataTable` (sorting and filtering), `Checklist` (ticks remembered in the browser, with a daily or weekly reset), `ClassGuides` (reads the pages of a folder) and `Contributors` (a simple one).
 
 ## Create a component
 ```bash

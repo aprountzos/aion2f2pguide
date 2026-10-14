@@ -1,4 +1,4 @@
 {
-  "description": "Cards for the eight classes (role, weapon) with a link to each class guide, or to the guide builder when none exists. Data: data/classes.yml.",
+  "description": "Cards for the eight classes (role, weapon) with a link to each class page and the number of guides players wrote for it. Data: data/classes.yml.",
   "props": {}
 }

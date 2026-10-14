@@ -1,6 +1,6 @@
 import React from 'react';
 import {PageMetadata} from '@docusaurus/theme-common';
-import {useCurrentSidebarCategory, useDocById} from '@docusaurus/plugin-content-docs/client';
+import {useAllDocsData, useCurrentSidebarCategory, useDocById} from '@docusaurus/plugin-content-docs/client';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import Link from '@docusaurus/Link';
 import DocPaginator from '@theme/DocPaginator';
@@ -16,17 +16,20 @@ import styles from './styles.module.css';
 const countPages = (item) => (item.type === 'category' ? item.items.reduce((n, i) => n + countPages(i), 0) : 1);
 
 function Row({item}) {
-  const doc = useDocById(item.type === 'link' ? item.docId ?? undefined : undefined);
   const isCategory = item.type === 'category';
+  const all = Object.values(useAllDocsData()).flatMap((d) => d.versions.flatMap((v) => v.docs));
+  // a link row has its doc id; a category that links to a page (like a class page) is matched by its address
+  const docId = item.type === 'link' ? item.docId : all.find((d) => d.path === item.href && !d.id.startsWith('/'))?.id;
+  const doc = useDocById(docId ?? undefined);
   const href = item.href;
   if (!href) return null;
-  const description = isCategory ? item.description : doc?.description;
+  const description = isCategory ? item.description || doc?.description : doc?.description;
   return (
     <li className={styles.row}>
       <Link to={href} className={styles.rowLink}>
         {item.label}
       </Link>
-      {isCategory && <span className={styles.count}>{countPages(item)} pages</span>}
+      {isCategory && countPages(item) > 0 && <span className={styles.count}>{countPages(item)} {countPages(item) === 1 ? 'page' : 'pages'}</span>}
       {description && <p className={styles.rowText}>{description}</p>}
     </li>
   );
