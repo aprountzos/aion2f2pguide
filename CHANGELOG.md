@@ -4,6 +4,22 @@ Every published version of the guide and the site. The format follows [Keep a Ch
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-10-14
+
+Data checked: 2026-10-10
+
+### Added
+
+- Class pages with player-written guides, template and contribute guide; remove guide builder
+- Class pages with player-written guides, template and contribute guide; remove guide builder
+- Progress checklists, class guides with a guide builder, new logo, 404 page, calmer footer
+- Remembered level and faction, page header line, table and callout styling (#10)
+- Custom section pages with page descriptions (#5)
+
+### Maintenance
+
+- Remove links to maintainer-only guides (#6)
+
 ## [0.2.0] - 2026-10-13
 
 Data checked: 2026-10-10
@@ -89,7 +105,8 @@ First version.
 - Questions page: a blog-style list of answered questions with search and topics, and a discussion at the bottom where visitors ask new questions and others answer.
 - Pull request report: a bot comment with the changed pages and data rows, the pages that show that data and every problem with file and line. `npm run pr-report` runs it locally.
 
-[Unreleased]: https://github.com/aprountzos/aion2f2pguide/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/aprountzos/aion2f2pguide/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/aprountzos/aion2f2pguide/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/aprountzos/aion2f2pguide/compare/v0.1.3...v0.2.0
 [0.1.3]: https://github.com/aprountzos/aion2f2pguide/compare/v0.1.2...v0.1.3
 [0.1.2]: https://github.com/aprountzos/aion2f2pguide/compare/v0.1.0...v0.1.2
