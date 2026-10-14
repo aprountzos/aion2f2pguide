@@ -24,6 +24,7 @@ Choose the folder where a reader would look for it. Pages live in the `docs/` fo
 | `11-classes` | One folder per class, guides inside it. Use [Write a Class Guide](./write-a-class-guide.mdx) |
 
 If nothing fits, open an issue before creating a new folder. Folders are numbered (`12-pets`) and the number sets the order in the sidebar.
+If nothing fits, open an issue before creating a new folder. Folders are numbered (`12-pets`) and the number sets the order in the sidebar.
 
 ## 2. Create the page
 The easy way, from the project folder:

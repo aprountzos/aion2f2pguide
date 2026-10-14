@@ -3,6 +3,7 @@ updated: {{DATE}}
 description: TODO One sentence: who this guide is for and what it covers.
 author: TODO your GitHub username, without the @
 ---
+
 # {{CLASS}}: TODO guide title
 
 TODO One or two sentences: what this guide covers, and the game version or date it was checked on.
@@ -14,8 +15,8 @@ TODO One or two sentences: what this guide covers, and the game version or date 
 ## Build and skills
 
 | Skill | What it does | Learned at level | Priority |
-| --- | --- | --- | --- |
-| TODO | TODO | TODO | TODO |
+| ----- | ------------ | ---------------- | -------- |
+| TODO  | TODO         | TODO             | TODO     |
 
 ## Leveling 1–45
 
