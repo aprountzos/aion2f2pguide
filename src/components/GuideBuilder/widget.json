@@ -1,4 +1,0 @@
-{
-  "description": "A form that turns a player's notes into a class guide page written with the class guide template. The page can be copied, downloaded or created on GitHub in one click. The draft is kept in the visitor's browser. Data: data/classes.yml.",
-  "props": {}
-}
