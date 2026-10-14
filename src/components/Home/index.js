@@ -192,7 +192,7 @@ function Contents() {
                   {s.groups.map((g) => (
                     <li key={g.title}>
                       {g.url ? <Link to={g.url}>{g.title}</Link> : g.title}{' '}
-                      <span className={styles.dim}>{g.count} pages</span>
+                      {g.count ? <span className={styles.dim}>{g.count} {g.count === 1 ? 'page' : 'pages'}</span> : null}
                     </li>
                   ))}
                   {hidden > 0 && (

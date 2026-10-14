@@ -9,7 +9,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import YAML from 'yaml';
-import {mapOutsideFences, pageIndex, slugify} from './docs.mjs';
+import {collectPages, mapOutsideFences, pageIndex, pageUrl, parseFrontmatter, readPage, slugify} from './docs.mjs';
 
 export const NODE_TYPES = ['orichalcum', 'ruby', 'sapphire', 'asvata', 'yggdrasil'];
 export const NODE_LABELS = {
@@ -48,7 +48,8 @@ export const WIDGET_DATA = {
   ItemDatabase: ['data/items.yml'],
   Questions: ['data/questions.yml'],
   ClassIndex: ['data/classes.yml'],
-  GuideBuilder: ['data/classes.yml'],
+  ClassPage: ['data/classes.yml'],
+  ClassGuides: ['data/classes.yml'],
   Checklist: ['data/resets.yml'],
   Home: ['data/zones.yml', 'data/nodes.yml', 'data/leather.yml', 'data/milestones.yml', 'data/patches.yml'],
 };
@@ -564,11 +565,45 @@ export function updateBlocks(text, data, lang = 'en', linkTo = null) {
   return {text: out, ids, unknown};
 }
 
-/** The class list for <ClassIndex />: each class with the address of its guide (docs/11-classes/<id>.md) if it exists. */
-export function buildClasses(data, pages) {
+/**
+ * The class list for <ClassIndex />, <ClassPage /> and <ClassGuides />.
+ * Each class has a page, docs/11-classes/<id>/index.mdx, and the guides players wrote for it are the other
+ * pages in that folder (docs/11-classes/<id>/<guide-name>.md).
+ */
+export function buildClasses(data, docsDir) {
+  const pages = collectPages(docsDir).filter((p) => p.rel.startsWith('11-classes/') && p.parts.length === 2);
   return (data.classes || []).map((c) => {
-    const page = pages.get(c.id);
-    const guide = page && page.rel.startsWith('11-classes/') ? page.url : null;
-    return {id: c.id, name: c.name, role: c.role, weapon: c.weapon || '', note: c.note || '', source: c.source || '', guide};
+    const own = pages.filter((p) => p.parts[1] === c.id);
+    const guides = [];
+    let url = null;
+    for (const p of own) {
+      const file = p.rel.split('/').pop();
+      if (/^index\.mdx?$/.test(file)) {
+        url = pageUrl(p.rel);
+        continue;
+      }
+      const {fm, body} = readPage(p.abs);
+      const front = parseFrontmatter(fm);
+      guides.push({
+        title: front.sidebar_label || (body.match(/^#\s+(.+?)\s*$/m) || [])[1] || file,
+        url: pageUrl(p.rel, front.slug),
+        description: front.description || '',
+        author: front.author || '',
+        updated: front.updated || '',
+        position: Number.isFinite(Number(front.sidebar_position)) ? Number(front.sidebar_position) : 999,
+      });
+    }
+    guides.sort((a, b) => a.position - b.position || a.title.localeCompare(b.title));
+    return {
+      id: c.id,
+      name: c.name,
+      role: c.role,
+      weapon: c.weapon || '',
+      note: c.note || '',
+      source: c.source || '',
+      checked: c.checked || '',
+      url,
+      guides: guides.map(({position, ...g}) => g),
+    };
   });
 }

@@ -1,6 +1,6 @@
 ---
-updated: 2026-10-13
-description: "Write a guide for one class with a form. No coding needed."
+updated: 2026-10-14
+description: "Write a guide for one class, step by step, from a template. No coding needed."
 sidebar_position: 9
 comments: false
 staleness: false
@@ -8,29 +8,54 @@ corrections: false
 ---
 # Write a Class Guide
 
-Fill in the form and the page writes the guide for you, using the class guide template. When you are done, one button opens GitHub with your guide ready to send. You need a free [GitHub](https://github.com) account.
+Every class has its own page in the [Classes](../11-classes/overview.mdx) section, and below the description of the class are the guides players wrote for it. Anyone can add one. You need a free [GitHub](https://github.com) account and nothing else: no tools, no coding.
 
 ## Before you start
-- **Only write what you know.** A short guide that you checked in game is worth more than a long one copied from somewhere. Leave a section empty if you have nothing to say; it will not appear on the page.
-- **Say where it comes from.** Every guide needs at least one source: a link and the date you checked it, or "tested in game on 2026-10-13".
-- **Your own words.** Facts (levels, skill names, numbers) are fine. Do not paste text from other sites. See the [Style Guide](./style-guide.md).
-- **One guide per class.** If the class already has a guide, improve it with **Edit this page** on that page instead.
+- **Only write what you know.** A short guide you checked in game is worth more than a long one copied from somewhere. Remove any section you have nothing to say about.
+- **Say where it comes from.** Every guide ends with a Sources list: a link and the date you checked it, or "tested in game on 2026-10-14".
+- **Your own words.** Facts (levels, skill names, numbers) are fine. Do not paste text from other sites or videos. See the [Style Guide](./style-guide.md).
+- **Several guides per class are welcome.** A leveling guide, a group guide and a gear guide can sit side by side. Give yours a clear title. To fix someone else's guide, use **Edit this page** on it instead of writing a new one.
+- **Credit.** Put your GitHub name in the `author:` line. It is shown under the title of your guide on the class page.
 
-## The form
+## Write it in the browser
 
-<GuideBuilder />
+1. Pick your class below. GitHub opens a page for a new file with the template already in it. (If it asks you to sign in, do that first.)
+2. Rename the file at the top: keep the folder, change `my-guide.md` to a name for your guide, in lowercase letters and hyphens, for example `leveling-1-to-45.md`.
+3. Replace every placeholder line (each starts with the word "to do" in capital letters), and delete the sections you do not need.
+4. Scroll down and press **Propose new file**. GitHub makes a copy of the project for you (a fork). This is normal.
+5. Press **Create pull request**. Use a title like `add: Gladiator leveling guide`.
+6. The pull request is checked automatically, and a maintainer reviews it. When it is merged, your guide appears on the class page.
 
-## What happens when you click Create on GitHub
-1. GitHub opens a page for a new file in `docs/11-classes/` with your text already in it.
-2. If you are not a member of the project, GitHub makes a copy for you (a fork) and offers **Propose new file**. This is normal.
-3. Press **Propose new file**, then **Create pull request**. Use a title like `add: Gladiator guide`. The pull request is checked automatically and reviewed by a maintainer.
-4. When it is merged, the guide appears in the [Classes](../11-classes/overview.mdx) section.
+### Pick your class
 
-If the guide is too long for a link, the button copies it first. Paste it into the editor on the GitHub page (Ctrl+V).
+<GuideTemplate />
 
-## Writing it by hand
-Prefer to work in a file? Copy `templates/class-guide.md` to `docs/11-classes/<class>.md`, where `<class>` is the lowercase class name from `data/classes.yml` (`gladiator`, `templar`, ...). Replace every placeholder line (each one starts with the word "to do" in capital letters). The check (`npm run check`) fails while one is left in a class guide.
+The block above is the template. Each class link opens it with the class name and today's date already filled in.
 
-A class guide is a normal page, so the [Add a New Page](./add-a-new-page.md) steps for checking and sending apply.
+## Fill in the template
+
+| Part | What goes in it |
+| --- | --- |
+| `updated:` | The date you last checked the information, written `2026-10-14`. |
+| `description:` | One sentence: who the guide is for and what it covers. It is shown on the class page and in search. |
+| `author:` | Your GitHub name, without the @. |
+| `# Title` | The class name, a colon and the title of your guide: `# Gladiator: leveling 1–45`. |
+| Sections | Keep the ones you can fill in, delete the rest. Add your own with `##` if your guide needs them. |
+| Sources | At least one. A link and the date you checked it, or "tested in game on 2026-10-14". |
+
+Use the en dash for level ranges (10–14), keep numbers exact, and put big lists in tables. The [Style Guide](./style-guide.md) has the rest.
+
+## Write it on your computer
+If you prefer a file and an editor, set the project up as in [Make Your First Pull Request](./make-your-first-pull-request.md) (Path B), then:
+
+```bash
+npm run new-page -- "11-classes/gladiator" "Leveling 1 to 45"
+```
+
+This creates `docs/11-classes/gladiator/leveling-1-to-45.md` from the template, with the class name and today's date filled in. Edit it, then run `npm run check` (it fails while a placeholder line is left) and open a pull request **against `dev`** with a title like `add: Gladiator leveling guide`.
+
+## After it is merged
+- Re-check the guide after a patch and update the `updated:` date. Guides that nobody has verified for a long time show a warning to readers.
+- Anyone can improve your guide with **Edit this page**, and you can improve theirs the same way.
 
 Back to [How to Contribute](./how-to-contribute.md)

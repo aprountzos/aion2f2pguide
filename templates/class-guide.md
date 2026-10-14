@@ -1,48 +1,36 @@
 ---
 updated: {{DATE}}
-description: TODO One sentence: what this class does and who this guide is for.
-sidebar_position: {{POSITION}}
+description: TODO One sentence: who this guide is for and what it covers.
+author: TODO your GitHub username, without the @
 ---
-# {{NAME}}
+# {{CLASS}}: TODO guide title
 
-TODO One or two sentences: what the class does, and the game version this guide was checked on.
+TODO One or two sentences: what this guide covers, and the game version or date it was checked on.
 
-| | |
-| --- | --- |
-| Role | {{ROLE}} |
-| Weapon | {{WEAPON}} |
-| Checked on | {{DATE}} |
+## Who this guide is for
 
-## Strengths and weaknesses
+- TODO For example: a free-to-play player, a new character, level 30 and up.
 
-**Strengths**
-
-- TODO
-
-**Weaknesses**
-
-- TODO
-
-## Leveling 1–45
-
-- TODO Tips for leveling this class. Use level ranges, for example "1–10: ...".
-
-## Skills
+## Build and skills
 
 | Skill | What it does | Learned at level | Priority |
 | --- | --- | --- | --- |
 | TODO | TODO | TODO | TODO |
 
+## Leveling 1–45
+
+- TODO Use level ranges, for example "1–10: ...".
+
 ## Stats and gear
 
-- TODO What to look for in stats and equipment, and what a free-to-play player can get.
+- TODO What to look for, and what a free-to-play player can get.
 
 ## In a group
 
-- TODO What this class does in a party, dungeon or raid.
+- TODO What the class does in a party, dungeon or raid.
 
 ## Sources
 
-- TODO Where the information comes from: a link and the date you checked it, or "tested in game on <date>".
+- TODO A link and the date you checked it, or "tested in game on 2026-10-14".
 
-Back to [Classes](./overview.mdx)
+Back to [{{CLASS}}](./index.mdx)

@@ -1,0 +1,12 @@
+.lead {
+  margin-bottom: 0.4rem;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 1.2rem;
+  list-style: none;
+  margin: 0 0 1rem;
+  padding: 0;
+}

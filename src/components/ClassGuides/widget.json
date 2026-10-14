@@ -1,0 +1,6 @@
+{
+  "description": "The guides players wrote for one class (the pages in its folder) with the way to add one: a link to the contribute guide and a GitHub page with the template filled in. Data: data/classes.yml.",
+  "props": {
+    "id": {"type": "string", "required": true}
+  }
+}

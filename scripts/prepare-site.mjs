@@ -7,7 +7,8 @@
 //   - src/generated/data.json       tables and lists for the website components (git-ignored)
 //   - src/generated/items.json      the item database (<ItemDatabase />)
 //   - src/generated/questions.json  the answered questions (<Questions />)
-//   - src/generated/classes.json    the class list with links to the class guides (<ClassIndex />, <GuideBuilder />)
+//   - src/generated/classes.json    the class list with links to the class guides (<ClassIndex />, <ClassPage />, <ClassGuides />)
+//   - src/generated/templates.json  the class guide template (<GuideTemplate />, the "Start a guide on GitHub" links)
 //   - src/generated/sections.json   the directory on the home page (<Home />), read from the docs/ folders
 
 import fs from 'node:fs';
@@ -63,7 +64,11 @@ fs.writeFileSync(
 const pages = pageIndex(DOCS);
 fs.writeFileSync(path.join(GENERATED, 'items.json'), JSON.stringify(buildItems(data, pages)) + '\n');
 fs.writeFileSync(path.join(GENERATED, 'questions.json'), JSON.stringify(buildQuestions(data, pages)) + '\n');
-fs.writeFileSync(path.join(GENERATED, 'classes.json'), JSON.stringify(buildClasses(data, pages)) + '\n');
+fs.writeFileSync(path.join(GENERATED, 'classes.json'), JSON.stringify(buildClasses(data, DOCS)) + '\n');
+fs.writeFileSync(
+  path.join(GENERATED, 'templates.json'),
+  JSON.stringify({classGuide: fs.readFileSync(path.join(root, 'templates', 'class-guide.md'), 'utf8').replace(/\r\n/g, '\n')}) + '\n',
+);
 fs.writeFileSync(path.join(GENERATED, 'sections.json'), JSON.stringify(buildSections(DOCS)) + '\n');
 if (!fs.existsSync(path.join(GENERATED, 'contributors.json'))) {
   fs.writeFileSync(path.join(GENERATED, 'contributors.json'), '[]\n');
